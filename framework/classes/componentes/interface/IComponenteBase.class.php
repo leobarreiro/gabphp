@@ -95,6 +95,9 @@ function show() {
 	echo $this->stHtml;
 }
 
+function renderizar() {
+	$this->show();
+}
 
 }
 ?>
