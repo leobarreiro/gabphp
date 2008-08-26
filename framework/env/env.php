@@ -4,8 +4,8 @@
     * @license : GNU General License v.1
     * @link http://www.cielnews.com/gba
     * 
-    * Página de Definição de Constantes do Sistema
-    * Data de Criação: 14/11/2006
+    * Pgina de Definio de Constantes do Sistema
+    * Data de Criao: 14/11/2006
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -16,40 +16,40 @@
     * Casos de uso : 
 */
 
-define("GBA_ERRORS", 12); // Para depuracao
+define("GBA_ERRORS", 123); // Para depuracao
 
 error_reporting(GBA_ERRORS);
 
-define("GBA_URL_BASE", 'http://localhost/sistemas/');
+define("GBA_URL_BASE", 'http://localhost/');
 define("GBA_PATH_BASE", '/home/sistemas/');
 
-define("GBA_URL_SISTEMA", GBA_URL_BASE . 'gbaphp/');
-define("GBA_PATH_SISTEMA", GBA_PATH_BASE . 'gbaphp/');
+define("GBA_URL_SISTEMA", GBA_URL_BASE . 'gba/');
+define("GBA_PATH_SISTEMA", GBA_PATH_BASE . 'gba/');
 
-define("GBA_PATH_FWK", GBA_PATH_SISTEMA . 'Framework/');
+define("GBA_PATH_FWK", GBA_PATH_SISTEMA . 'framework/');
 
-define("GBA_PATH_ENV", GBA_PATH_FWK . 'Env/');
-define("GBA_PATH_CLA", GBA_PATH_FWK . 'Classes/');
-define("GBA_PATH_CLA_EST", GBA_PATH_FWK . 'Classes/Estatica/');
-define("GBA_PATH_CLA_MAP", GBA_PATH_FWK . 'Classes/Mapeamento/');
-define("GBA_PATH_CLA_BDA", GBA_PATH_FWK . 'Classes/BancoDados/');
-define("GBA_PATH_CLA_CMP", GBA_PATH_FWK . 'Classes/Componentes/');
-define("GBA_PATH_CLA_INT", GBA_PATH_FWK . 'Classes/Componentes/Interface/');
+define("GBA_PATH_ENV", GBA_PATH_FWK . 'env/');
+define("GBA_PATH_CLA", GBA_PATH_FWK . 'classes/');
+define("GBA_PATH_CLA_EST", GBA_PATH_CLA . 'estatica/');
+define("GBA_PATH_CLA_MAP", GBA_PATH_CLA . 'mapeamento/');
+define("GBA_PATH_CLA_BDA", GBA_PATH_CLA . 'bancodados/');
+define("GBA_PATH_CLA_CMP", GBA_PATH_CLA . 'componentes/');
+define("GBA_PATH_CLA_INT", GBA_PATH_CLA . 'componentes/interface/');
 
 // 27/01/2007
 
 // Fpdf - Biblioteca para Gerar PDF
 
-define("FPDF_FONTPATH", GBA_PATH_FWK . 'Fpdf/font/');
+define("FPDF_FONTPATH", GBA_PATH_BASE . 'Fpdf/font/');
 
 // Prefixo comum para todas as Constantes (SWB)
 
 // Familia de Constantes para Banco de Dados (BD)
 
 define("GBA_BD_HOST", 'localhost');
-define("GBA_BD_USR", 'gbaphp');  // Usuario Mestre para Conexao
+define("GBA_BD_USR", 'gba');  // Usuario Mestre para Conexao
 define("GBA_BD_PW", '123456');
-define("GBA_BD_NAME", 'gbaphp');  // Banco de Dados do Sistema
+define("GBA_BD_NAME", 'cielnews_gba');  // Banco de Dados do Sistema
 
 // FTP
 
@@ -57,7 +57,7 @@ define("GBA_FTP_HOST", 'localhost');
 define("GBA_FTP_USR", 'leo');  // Usuario Mestre para Conexao
 define("GBA_FTP_PW", 'fabi');
 define("GBA_FTP_PASSIVE", 'true');
-define("GBA_FTP_PATH", '/home/sistemas/gbaphp/');
+define("GBA_FTP_PATH", '/home/sistemas/gba/');
 define("GBA_FTP_PATH_FOTOS", 'img/');
 
 // Tabelas do Banco
@@ -95,7 +95,7 @@ define("GBA_IMG_DIR_BASE", GBA_PATH_BASE . 'imagens/');
 define("GBA_IMG_DIR_THUMBS", 'thumbs/'); // caminho relativo ao diretorio principal de imagens
 define("GBA_IMG_FOTO_BORDA_EXT", 'black'); // 17/01/2007 - Cor da Borda Externa para Fotos
 define("GBA_IMG_FOTO_BORDA_INT", 'white'); // 17/01/2007 - Cor da Borda Interna para Fotos
-define("GBA_IMG_ETQ_FOTO", GBA_PATH_SISTEMA . 'Images/etq.gif');
+define("GBA_IMG_ETQ_FOTO", GBA_PATH_SISTEMA . 'images/etq.gif');
 define("GBA_IMG_URL_BASE", GBA_URL_BASE . 'imagens_atusistemas/');
 
 // Titulo de Paginas do Sistema
