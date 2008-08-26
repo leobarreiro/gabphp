@@ -3,7 +3,7 @@
  * Link.class.php
  * 02/01/2008
 */
-include_once (GBA_PATH_CLA_CMP . 'Interface/IComponenteBase.class.php');
+include_once (GBA_PATH_CLA_INT . 'IComponenteBase.class.php');
 
 class ILink extends IComponenteBase {
 

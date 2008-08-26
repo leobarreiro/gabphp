@@ -3,7 +3,7 @@
  * Linha.class.php
  * 28/12/2007
 */
-include_once (GBA_PATH_CLA_CMP . 'Interface/IComponenteBase.class.php');
+include_once (GBA_PATH_CLA_INT . 'IComponenteBase.class.php');
 
 class ILinha extends IComponenteBase {
 	
