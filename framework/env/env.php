@@ -42,6 +42,9 @@ define("GBA_PATH_CLA_INT", GBA_PATH_CLA . 'componentes/interface/');
 
 define("FPDF_FONTPATH", GBA_PATH_BASE . 'Fpdf/font/');
 
+// RAP - Biblioteca para RDF com PHP
+define("RDFAPI_INCLUDE_DIR", GBA_PATH_BASE . "rdfapi"); 
+
 // Prefixo comum para todas as Constantes (SWB)
 
 // Familia de Constantes para Banco de Dados (BD)
