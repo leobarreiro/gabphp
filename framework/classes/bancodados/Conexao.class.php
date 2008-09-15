@@ -17,7 +17,7 @@ function setSenha($stSenha) { $this->stSenha = (string) $stSenha; }
 function setBanco($stBanco) { $this->stBanco = (string) $stBanco; }
 function setMsg($stMsg) { $this->stMsg = (string) $stMsg; }
 function setErro($integer) { $this->inErro = (integer) $integer; }
-function setConexao($idConexao) { $this->idConexao = $idConexao; } /* Permite definir uma conexão já existente */
+function setConexao($idConexao) { $this->idConexao = $idConexao; } /* Permite definir uma conexao ja existente */
 
 function getHost() { return $this->stHost; }
 function getUsuario() { return $this->stUsuario; }
@@ -54,7 +54,7 @@ function Conexao($stHost=null, $stUsuario=null, $stSenha=null, $stBanco=null) {
 	}
 	else {
 		$this->setConexao(null);
-		$this->setMsg('Não ocorreu a Conexão');
+		$this->setMsg('Nï¿½o ocorreu a Conexï¿½o');
 		$this->setErro(1);		
 	}
 
@@ -88,7 +88,7 @@ function executaSQL($sql) {
 			return $this->roConsulta;
 		}		
 	} else {		
-		$this->setMsg('Sem conexão estabelecida');
+		$this->setMsg('Sem conexï¿½o estabelecida');
 		$this->setErro(1);
 		return false;
 	}

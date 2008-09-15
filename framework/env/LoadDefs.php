@@ -1,9 +1,20 @@
 <?php
-/*
-* LoadDefs.php
-* Carrega Definições para a página principal
-* 25/01/2008
-* */
+/**
+ * Framework GBAPHP
+ * @license : GNU Lesser General Public License v.3
+ * @link http://cielnews.com/gba
+ * 
+ * Carregamento de Constantes e outros recursos
+ * Data de Referência: 25/01/2008
+ * @author Leopoldo Braga Barreiro
+ *     
+ * @package GBA
+ * @subpackage
+ *     
+ * $Id: $
+ *     
+ * Casos de uso : 
+*/
 
 // variaveis de ambiente e variaveis especiais
 

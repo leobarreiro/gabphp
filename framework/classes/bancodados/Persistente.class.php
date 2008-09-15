@@ -229,8 +229,8 @@ function recuperar() {
 /**
 * @param 	void
 * @desc 	Altera um registro no banco
-* @return 	integer: n�mero de registros afetados com o UPDATE realizado no banco
-* @todo 	Proporcionar que a altera��o seja efetuada apenas nos campos que foram modificados do objeto. Atualmente modifica todos os campos descritos.
+* @return 	integer: número de registros afetados com o UPDATE realizado no banco
+* @todo 	Proporcionar que a alteração seja efetuada apenas nos campos que foram modificados do objeto. Atualmente modifica todos os campos descritos.
 * */
 function alterar() {
 

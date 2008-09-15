@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Página de Encerramento de Sessão
-    * Data de Criação: 21/06/2008
+    * Pgina de Encerramento de Sesso
+    * Data de Criao: 21/06/2008
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -16,7 +16,7 @@
     * Casos de uso : 
 */
 
-include ('Framework/Env/env.php');
+include ('framework/env/env.php');
 include_once ( GBA_PATH_ENV . 'LoadDefs.php');
 include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
 

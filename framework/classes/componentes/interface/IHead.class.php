@@ -12,7 +12,7 @@ var $stTitle;
 var $stCharset;
 var $stUrlCssFile;
 var $stUrlJScriptFile;
-var $stUrlFavicon; // ícone para a url no browser
+var $stUrlFavicon; // ï¿½cone para a url no browser
 
 /* TODO: implementar favicon para icone de navegador */
 // exemplo: <link rel="shortcut icon" type="image/ico" href="http://felipetonello.com/blog/wp-content/themes/road-to-heaven/favicon.png" />
@@ -69,7 +69,7 @@ function montaHtml() {
 	}
 	
 	if (strlen($this->getUrlJScriptFile())) {
-		$stHtml .= '	<script type="text/javascript" src="' . $this->getUrlJScriptFile() . '" />' . "\n";
+		$stHtml .= '	<script type="text/javascript" src="' . $this->getUrlJScriptFile() . '"></script>' . "\n";
 	}
 	
 	if (strlen($this->getUrlFavicon())) {

@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Página de Redirecionamento Padrão
-    * Data de Criação: 21/06/2008
+    * Pgina de Redirecionamento Padro
+    * Data de Criao: 21/06/2008
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -16,7 +16,7 @@
     * Casos de uso : 
 */
 
-include_once ( 'Framework/Env/env.php' );
+include_once ( 'framework/env/env.php' );
 
 if (isset($_COOKIE[GBA_COOKIE_NAME])) {
 	header("Cache-control: private");

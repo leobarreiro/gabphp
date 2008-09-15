@@ -1,7 +1,7 @@
 <?
 // bdBackUpSwBrasil.class.php
 // 23/10/2006
-// Ferramentas para backup automático de dados e arquivos
+// Ferramentas para backup automatico de dados e arquivos
 // Dados em MySQL
 // Arquivos via Ftp
 

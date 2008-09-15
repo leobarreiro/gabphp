@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Página Inicial Padrão
-    * Data de Criação: 21/06/2008
+    * Pgina Inicial Padro
+    * Data de Criao: 21/06/2008
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -16,16 +16,16 @@
     * Casos de uso : 
 */
 
-include_once('Framework/Env/env.php');
+include_once('framework/env/env.php');
 include_once ( GBA_PATH_ENV . 'LoadDefs.php');
 include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
 
 Sessao::controle();
 
 $obHtml = new IHtml;
-$obHtml->obHead->setUrlCssFile(GBA_URL_SISTEMA . "Framework/Css/getpost.css");
+$obHtml->obHead->setUrlCssFile(GBA_URL_SISTEMA . "framework/css/gbaphp.css");
 
-include ('Framework/Includes/menu.php');
+include ('framework/include/menu.php');
 
 $obHtml->show();
 ?>

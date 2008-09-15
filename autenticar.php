@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Página de Autenticação Inicial no Sistema
-    * Data de Criação: 25/01/2007
+    * Pgina de Autenticao Inicial no Sistema
+    * Data de Criao: 25/01/2007
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -16,8 +16,8 @@
     * Casos de uso : 
 */
 
-include_once ( 'Framework/Env/env.php' );
-include_once ( 'Framework/Env/LoadDefs.php' );
+include_once ( 'framework/env/env.php' );
+include_once ( 'framework/env/LoadDefs.php' );
 
 if ( isset($_POST['usuario']) && strlen($_POST['senha']) 
 	&& isset($_POST['senha']) && strlen($_POST['senha']) ) {

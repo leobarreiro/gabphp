@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Página de Login Padrão
-    * Data de Criação: 21/06/2008
+    * Pgina de Login Padro
+    * Data de Criao: 21/06/2008
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -16,12 +16,12 @@
     * Casos de uso : 
 */
 
-include_once ('Framework/Env/env.php');
-include_once ('Framework/Env/LoadDefs.php');
+include_once ('framework/env/env.php');
+include_once ('framework/env/LoadDefs.php');
 include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
 
 $obHtml = new IHtml;
-$obHtml->obHead->setUrlCssFile('Framework/Css/getpost.css');
+$obHtml->obHead->setUrlCssFile('framework/css/gbaphp.css');
 
 $obForm = new IFormulario();
 $obForm->setId('frmLogin');
@@ -30,7 +30,7 @@ $obForm->setAction('autenticar.php');
 
 $obForm->obEvento->setOnSubmit("JsLogin()");
 
-$obImgLogo = new IImg('Framework/Images/logo.png', 'Login');
+$obImgLogo = new IImg('framework/images/logo.png', 'Login');
 $obImgLogo->setId('logoLogin');
 $obHtml->obBody->addComponente($obImgLogo);
 
