@@ -156,6 +156,7 @@ class Mensagem extends Object {
 		$stCabecalho .= "From: '" . $this->stEmissorNome . "' <" . $this->stEmissorEmail . ">\r\n";
 		
 		$arCopiados = $this->arCopiaDestinatarios;
+		
 		if (count($arCopiados) > 0) {
 			$stCabecalho .= "CC: " . implode(', ', $arCopiados) . "\r\n";
 		}
@@ -166,6 +167,10 @@ class Mensagem extends Object {
 		
 
 		$boEnvio = mail(getDestinatario(), $this->getAssunto(), $this->getMensagem(), $stCabecalho);
+		
+		if (!$boEnvio) {
+			$this->setErro('Mensagem não enviada', true);
+		}
 		
 		return $boEnvio;
 
