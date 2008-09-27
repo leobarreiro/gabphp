@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Classe Estática de Depuração e Usos Diversos
-    * Data de Criação: 16/11/2007
+    * Classe Estï¿½tica de Depuraï¿½ï¿½o e Usos Diversos
+    * Data de Criaï¿½ï¿½o: 16/11/2007
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -206,7 +206,7 @@ function dataServ()
 	$obFuso->setFormatoData("d/m/y H:i");
 	$obFuso->calculaDataHoraLocal();
 	$stDataHora = $obFuso->getDataLocal() . 'h.';
-	$arDiaSemana = array(0=>'Domingo', 1=>'Segunda', 2=>'Terça', 3=>'Quarta', 4=>'Quinta', 5=>'Sexta', 6=>'Sábado');
+	$arDiaSemana = array(0=>'Domingo', 1=>'Segunda', 2=>'Ter&ccedil;a', 3=>'Quarta', 4=>'Quinta', 5=>'Sexta', 6=>'S&aacute;bado');
 	$obFuso->setFormatoData("w");
 	$obFuso->calculaDataHoraLocal();
 	$stDiaSemana = $arDiaSemana[$obFuso->getDataLocal()];

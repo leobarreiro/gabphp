@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Classe Estática de Administração de Sessão
-    * Data de Criação: 14/11/2006
+    * Classe Estatica de Administracao de Sessao
+    * Data de Criacao: 14/11/2006
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -21,8 +21,8 @@ class Sessao {
 	
 /**
 * @name 	controle
-* @usage	Controlar a autenticação de Usuário no Sistema
-* @desc 	Controla a Autenticação de Usuário no Sistema. Deve ser chamado no início de cada página.
+* @usage	Controlar a autenticacao de Usuario no Sistema
+* @desc 	Controla a Autenticacao de Usuario no Sistema. Deve ser chamado no inicio de cada pagina.
 * @param 	void
 * @return 	void
 * */	
@@ -39,7 +39,7 @@ function controle() {
 	if ($boAutenticado === false) {
 		header("Location: " . GBA_URL_SISTEMA . "login.php");
 	}
-	// Adiciona registro no Histórico de navegação
+	// Adiciona registro no Hisorico de navegacao
 	$_SESSION['historico'][] = str_replace(GBA_PATH_SISTEMA, '', $_SERVER['SCRIPT_FILENAME']);
 }
 
@@ -109,7 +109,7 @@ function abre( $stUsuario, $stSenha ) {
 		$obMPSessao->addValor('horafim', 'NULL');
 		$obMPSessao->addValor('ativa', 1);
 		
-		// Encerra todas as Sessões do Usuário
+		// Encerra todas as Sessoes do Usuario
 		$obMPSessao->encerraSessoesUsuario((integer) $rsUsuario->getValor('codusuario'));		
 		
 		$obMPSessao->incluir();
