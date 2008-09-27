@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Classe de Persist�ncia com Base de Dados
-    * Data de Cria��o: 05/01/2008
+    * Classe de Persistencia com Base de Dados
+    * Data de Criacao: 05/01/2008
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -16,9 +16,10 @@
     * Casos de uso : 
 */
 
+include_once( GBA_PATH_CLA . 'Object.class.php' );
 include_once( GBA_PATH_CLA_BDA . 'Conexao.class.php');
 
-class Persistente {
+class Persistente extends Object {
 
 var $obConexao; // Objeto do Tipo Conexao
 var $stTabela;
@@ -41,6 +42,7 @@ var $inInsertId;
 
 function Persistente() {
 
+	parent::__construct();
 	$this->obConexao = new Conexao(GBA_BD_HOST, GBA_BD_USR, GBA_BD_PW, GBA_BD_NAME);
 	$this->arChavePrimaria = array();
 	$this->arChaveEstrangeira = array();

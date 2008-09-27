@@ -88,7 +88,7 @@ function executaSQL($sql) {
 			return $this->roConsulta;
 		}		
 	} else {		
-		$this->setMsg('Sem conex�o estabelecida');
+		$this->setMsg('Sem conexao estabelecida');
 		$this->setErro(1);
 		return false;
 	}
