@@ -35,6 +35,7 @@ define("GBA_PATH_CLA_MAP", GBA_PATH_CLA . 'mapeamento/');
 define("GBA_PATH_CLA_BDA", GBA_PATH_CLA . 'bancodados/');
 define("GBA_PATH_CLA_CMP", GBA_PATH_CLA . 'componentes/');
 define("GBA_PATH_CLA_INT", GBA_PATH_CLA . 'componentes/interface/');
+define ("GBA_PATH_CLA_WEB", GBA_PATH_CLA . 'web/');
 
 // 27/01/2007
 
@@ -51,7 +52,7 @@ define("RDFAPI_INCLUDE_DIR", GBA_PATH_BASE . "rdfapi/api/");
 
 define("GBA_BD_HOST", 'localhost');
 define("GBA_BD_USR", 'cielnews_tcc');  // Usuario Mestre para Conexao
-define("GBA_BD_PW", 'senac');
+define("GBA_BD_PW", '');
 define("GBA_BD_NAME", 'cielnews_tcc');  // Banco de Dados do Sistema
 
 // FTP
