@@ -3,9 +3,11 @@
 * IComponenteBase.class.php
 * 28/12/2007
 */
+
+include_once( GBA_PATH_CLA . 'Object.class.php' );
 include_once (GBA_PATH_CLA_INT . 'IEvento.class.php');
 
-class IComponenteBase {
+class IComponenteBase extends Object {
 
 var $stTag;
 var $stNome;
@@ -20,6 +22,7 @@ var $stHtml;
 
 
 function IComponenteBase() {
+	parent::__construct();
 	$this->stCss = '';
 	$this->stStyle = '';
 	$this->stHtml = '';

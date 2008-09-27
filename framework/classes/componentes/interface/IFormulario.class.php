@@ -46,6 +46,7 @@ function addComponente($obComponente) {
 function ativaTabela() {
 	$this->boTabelaAtiva = true;
 	$this->obTabela = new ITabela();
+	$this->obTabela->setAlign('center');
 	$this->arComponenteTabela = array();
 }
 
@@ -56,14 +57,15 @@ function addComponenteTabela($stLabel, $obMixed, $arWidth=null) {
 	
 	$obTabela = $this->obTabela;
 	if (!is_array($arWidth)) {
-		$arWidth = array('', '');
+		$arWidth = array('25%', '75%');
 	}
 	
 	if (strlen($stLabel) > 0) {
 		
 		$obCelulaLabel = new ICelula($arWidth[0]);
 		$obCelulaLabel->addComponente(new ITexto($stLabel));
-		$obTabela->addCelula($obCelulaLabel, true); // TODO: Tratar estilo CSS alternado entre linhas aqui.
+		$obTabela->addCelula($obCelulaLabel, true); 
+		// TODO: Tratar estilo CSS alternado entre linhas aqui.
 		
 		$obCelulaMixed = new ICelula($arWidth[1]);
 		$obCelulaMixed->addComponente($obMixed);

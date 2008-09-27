@@ -12,7 +12,7 @@ var $stTitle;
 var $stCharset;
 var $stUrlCssFile;
 var $stUrlJScriptFile;
-var $stUrlFavicon; // �cone para a url no browser
+var $stUrlFavicon; // Icone para a url no browser
 
 /* TODO: implementar favicon para icone de navegador */
 // exemplo: <link rel="shortcut icon" type="image/ico" href="http://felipetonello.com/blog/wp-content/themes/road-to-heaven/favicon.png" />
