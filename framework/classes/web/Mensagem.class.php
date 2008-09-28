@@ -166,9 +166,11 @@ class Mensagem extends Object {
 		$stCabecalho .= 'X-Mailer: PHP/' . phpversion();
 		
 
-		$boEnvio = mail(getDestinatario(), $this->getAssunto(), $this->getMensagem(), $stCabecalho);
+		$boEnvio = mail($this->getDestinatario(), $this->getAssunto(), $this->getMensagem(), $stCabecalho);
 		
-		if (!$boEnvio) {
+		if ($boEnvio) {
+			$this->setErro('Mensagem enviada corretamente', false);
+		} else {
 			$this->setErro('Mensagem não enviada', true);
 		}
 		
