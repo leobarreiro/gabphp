@@ -35,13 +35,17 @@ function getHeight() { return $this->stHeight; }
 function getCellPadding() { return $this->stCellPadding; }
 function getCellSpacing() { return $this->stCellSpacing; }
 
-function addCelula($obCelula, $boNovaLinha=false, $stIdNovaLinha='', $stCssNovaLinha='') {
+/**
+ * Adiciona nova Linha a Tabela
+ *
+ * @param ICelula $obCelula
+ * @param boolean $boNovaLinha
+ * @param String $stCssNovaLinha
+ */
+function addCelula($obCelula, $boNovaLinha=false, $stCssNovaLinha='') {
 	
 	if ($boNovaLinha) {
 		$obLinha = new ILinha;
-		if (strlen($stIdNovaLinha)) {
-			$obLinha->setNomeId($stIdNovaLinha);
-		}
 		if (strlen($stCssNovaLinha)) {
 			$obLinha->setCss($stCssNovaLinha);
 		}

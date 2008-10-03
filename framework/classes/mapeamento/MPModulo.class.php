@@ -5,7 +5,7 @@
     * @link http://www.cielnews.com/gba
     * 
     * Classe de Mapeamento de Tabela: gba_modulo
-    * Data de Criação: 21/06/2008
+    * Data de Criacao: 21/06/2008
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -25,7 +25,7 @@ function MPModulo() {
 	$this->recuperaCamposTabela();	
 }
 /**
-* @todo implementar consulta para retornar os módulos disponíveis para o usuario
+* @todo implementar consulta para retornar os modulos disponiveis para o usuario
 * */
 function montaModulosUsuario($inCodUsuario) {
 	$stSQL = " SELECT " . $this->getTabela() . "  WHERE codusuario = " . $inCodUsuario . " ";
@@ -34,8 +34,8 @@ function montaModulosUsuario($inCodUsuario) {
 
 /**
  * @params 	integer inCodUsuario 
- * @desc 	Retorna todos os Módulos permitidos para determinado Usuário
- * @return 	Resource Lista de Módulos
+ * @desc 	Retorna todos os Modulos permitidos para determinado Usuario
+ * @return 	Resource Lista de Modulos
 */
 function modulosUsuario($inCodUsuario) {
 	$boRetorno = false;
@@ -52,8 +52,8 @@ function montaRecuperaPorDiretorio($stDiretorio) {
 }
 
 /**
-* @desc 	Retorna os dados do Módulo de acordo com o diretorio passado por parâmetro
-* @param 	String Diretório do Módulo
+* @desc 	Retorna os dados do Modulo de acordo com o diretorio passado por parametro
+* @param 	String Diretorio do Modulo
 * @return 	Resource Consulta do Banco
 * 
 * */
