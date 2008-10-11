@@ -214,7 +214,9 @@ function recuperar() {
 	$this->stSQL = $stSQL;
 	
 	// Consulta
+	
 	$this->roConsulta = mysql_query($stSQL, $this->obConexao->getConexao());
+	
 	if (mysql_error($this->obConexao->getConexao())) {
 		$this->stDebug = mysql_error($this->obConexao->getConexao());
 	}
@@ -224,6 +226,8 @@ function recuperar() {
 	else {
 		$this->inRegSelecionados = 0;
 	}
+	
+	return $this->roConsulta;
 
 }
 
