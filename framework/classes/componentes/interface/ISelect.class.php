@@ -27,14 +27,31 @@ function ISelect($stNome='') {
 function setMultiple($bool) { $this->boMultiple = $bool; }
 function setSize($inValor) { $this->inSize = $inValor; }
 function setOpcao( $arMatriz ) { $this->arOpcao = $arMatriz; }
-function setSelecionado($arValor) { $this->arSelecionado = $arValor; }
+
+/**
+ * @param MixedElement (Array, String, integer)
+ */
+function setSelecionado($mixedValor) {
+    if (is_array($mixedValor)) {
+        $this->arSelecionado = $mixedValor;
+    } else {
+        $arSelecionados = $this->arSelecionado;
+        $arSelecionados[] = $mixedValor;
+        $this->arSelecionado = $arSelecionados;
+    }    
+}
 
 function getMultiple() { return $this->boMultiple; }
 function getOpcao() { return $this->arOpcao; }
 function getSize() { return $this->inSize; }
 function getSelecionado() { return $this->arSelecionado; }
 
-function addOpcao($arOpt) { $this->arOpcao[] = $arOpt; }
+function addOpcao($stValor, $stLabel) {
+    $arOpcoes = $this->arOpcao;
+    $arOpcoes[$stValor] = $stLabel;
+    $this->arOpcao = $arOpcoes;
+    unset($arOpcoes);
+}
 
 function montaHtml() {
 	$stHtml = '<select';
@@ -62,14 +79,16 @@ function montaHtml() {
 	$this->obEvento->montaHtml();
 	$stHtml .= $this->obEvento->getHtml();
 	$stHtml .= '>';
-	foreach ($this->arOpcao as $stOptValor => $stOptTexto) {
+    
+    $arOpcao = $this->arOpcao;
+	foreach ($arOpcao as $stValor=>$stLabel) {
 		$stOpcao = '<option';
-		$stOpcao .= ' value="' . $stOptValor . '"';
-		if (in_array($stOptValor, $this->arSelecionado)) {
+		$stOpcao .= ' value="' . $stValor . '"';
+		if (in_array($stValor, $this->arSelecionado)) {
 			$stOpcao .= ' selected';
 		}
 		$stOpcao .= '>';
-		$stOpcao .= $stOptTexto;
+		$stOpcao .= $stLabel;
 		$stOpcao .= '</option>';
 		$stHtml .= $stOpcao;
 		unset($stOpcao);
