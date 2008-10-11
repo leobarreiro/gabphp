@@ -28,29 +28,29 @@ function MPUsuario() {
 
 function montaLista() {
 	$stSQL = "	SELECT 
-					usu.codusuario, 
-					usu.nomecompleto, 
-					usu.nomeusuario, 
-					usu.email, 
-					CASE usu.ativo
-						WHEN '1' THEN 'sim'  
-						WHEN '2' THEN 'nao'  
-					END AS atv, 
-					ad.codusuario AS codadmin, 
-					ad.nomecompleto AS nomeadmin, 
-					DATE_FORMAT(MAX(sess.datainicio), '%d/%m/%y') AS dtult, 
-					MAX(sess.datainicio) AS ultimo_acesso  
-				FROM 
-					`" . $this->getTabela() . "` AS usu INNER JOIN 
-					`" . GBA_BD_TEMPR . "` AS empr ON 
-					empr.codempresa = usu.codempresa INNER JOIN 
-					`" . $this->getTabela() . "` ad ON 
-					ad.codusuario = usu.codadm LEFT JOIN 
-					`" . GBA_BD_TSESS . "` sess ON 
-					usu.codusuario = sess.codusuario 
-				WHERE 1 
-				GROUP BY usu.codusuario 
-				ORDER BY usu.nomecompleto ASC ";
+				usu.codusuario, 
+				usu.nomecompleto, 
+				usu.nomeusuario, 
+				usu.email, 
+				CASE usu.ativo
+					WHEN '1' THEN 'sim'  
+					WHEN '2' THEN 'nao'  
+				END AS atv, 
+				ad.codusuario AS codadmin, 
+				ad.nomecompleto AS nomeadmin, 
+				DATE_FORMAT(MAX(sess.datainicio), '%d/%m/%y') AS dtult, 
+				MAX(sess.datainicio) AS ultimo_acesso  
+			FROM 
+				`" . $this->getTabela() . "` AS usu INNER JOIN 
+				`" . GBA_BD_TEMPR . "` AS empr ON 
+				empr.codempresa = usu.codempresa INNER JOIN 
+				`" . $this->getTabela() . "` ad ON 
+				ad.codusuario = usu.codadm LEFT JOIN 
+				`" . GBA_BD_TSESS . "` sess ON 
+				usu.codusuario = sess.codusuario 
+			WHERE 1 
+			GROUP BY usu.codusuario 
+			ORDER BY usu.nomecompleto ASC ";
 	
 	return $stSQL;	
 }
@@ -71,27 +71,27 @@ function executaListaEspecial( $arParams=array() ) {
 function montaListaEspecial( $arParams=array() ) {
 	
 	$stSQL = "	SELECT 
-					usu.codusuario, 
-					usu.nomecompleto, 
-					usu.nomeusuario, 
-					usu.email, 
-					CASE usu.ativo
-						WHEN '1' THEN 'sim'  
-						WHEN '2' THEN 'nao'  
-					END AS atv, 
-					ad.codusuario AS codadmin, 
-					ad.nomecompleto AS nomeadmin, 
-					DATE_FORMAT(MAX(sess.datainicio), '%d/%m/%y') AS dtult, 
-					MAX(sess.datainicio) AS ultimo_acesso  
-				FROM 
-					`" . $this->getTabela() . "` AS usu INNER JOIN 
-					`" . GBA_BD_TEMPR . "` AS empr ON 
-					empr.codempresa = usu.codempresa INNER JOIN 
-					`" . $this->getTabela() . "` ad ON 
-					ad.codusuario = usu.codadm LEFT JOIN 
-					`" . GBA_BD_TSESS . "` sess ON 
-					usu.codusuario = sess.codusuario 
-				WHERE empr.codempresa = " . $_SESSION['sessao']['codempresa'] . " "; 
+				usu.codusuario, 
+				usu.nomecompleto, 
+				usu.nomeusuario, 
+				usu.email, 
+				CASE usu.ativo
+					WHEN '1' THEN 'sim'  
+					WHEN '2' THEN 'nao'  
+				END AS atv, 
+				ad.codusuario AS codadmin, 
+				ad.nomecompleto AS nomeadmin, 
+				DATE_FORMAT(MAX(sess.datainicio), '%d/%m/%y') AS dtult, 
+				MAX(sess.datainicio) AS ultimo_acesso  
+			FROM 
+				`" . $this->getTabela() . "` AS usu INNER JOIN 
+				`" . GBA_BD_TEMPR . "` AS empr ON 
+				empr.codempresa = usu.codempresa INNER JOIN 
+				`" . $this->getTabela() . "` ad ON 
+				ad.codusuario = usu.codadm LEFT JOIN 
+				`" . GBA_BD_TSESS . "` sess ON 
+				usu.codusuario = sess.codusuario 
+			WHERE empr.codempresa = " . $_SESSION['sessao']['codempresa'] . " "; 
 
 	if (isset($arParams['codadm']) && strlen($arParams['codadm'])) {
 		$stSQL .= "	AND usu.codadm IN ( " . $arParams['codadm'] . " ) ";
@@ -125,16 +125,16 @@ function montaListaFuncionariosGerente( $arParams=array() ) {
 	// Subordinados Indiretos
 	
 	$stSQL = "	SELECT 
-					codusuario, 
-					nomecompleto, 
-					nomeusuario, 
-					email, 
-					ativo 
-				FROM 
-					`" . $this->getTabela() . "` 
-				WHERE codadm IN (	SELECT codusuario 
-									FROM `" . $this->getTabela() . "` 
-									WHERE codadm = " . $_SESSION['sessao']['codusuario'] . " ) ";
+				codusuario, 
+				nomecompleto, 
+				nomeusuario, 
+				email, 
+				ativo 
+			FROM 
+				`" . $this->getTabela() . "` 
+			WHERE codadm IN (	SELECT codusuario 
+								FROM `" . $this->getTabela() . "` 
+								WHERE codadm = " . $_SESSION['sessao']['codusuario'] . " ) ";
 
 	if (isset($arParams['administrador']) && strlen($arParams['administrador'])) {
 		$stSQL .= "	AND administrador = " . $arParams['administrador'] . " ";
@@ -146,15 +146,15 @@ function montaListaFuncionariosGerente( $arParams=array() ) {
 	// Subordinados Diretos
 	
 	$stSQL .= "	UNION ALL 
-				SELECT 
-					codusuario, 
-					nomecompleto, 
-					nomeusuario, 
-					email, 
-					ativo 
-				FROM 
-					`" . $this->getTabela() . "` 
-				WHERE codadm = " . $_SESSION['sessao']['codusuario'] . " ";
+			SELECT 
+				codusuario, 
+				nomecompleto, 
+				nomeusuario, 
+				email, 
+				ativo 
+			FROM 
+				`" . $this->getTabela() . "` 
+			WHERE codadm = " . $_SESSION['sessao']['codusuario'] . " ";
 	
 	if (isset($arParams['administrador']) && strlen($arParams['administrador'])) {
 		$stSQL .= "	AND administrador = " . $arParams['administrador'] . " ";
