@@ -4,7 +4,7 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Pgina de Autenticao Inicial no Sistema
+    * Pagina de Autenticao Inicial no Sistema
     * Data de Criao: 25/01/2007
     * @author Leopoldo Braga Barreiro
     *     
