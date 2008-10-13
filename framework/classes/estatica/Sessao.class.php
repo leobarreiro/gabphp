@@ -26,7 +26,8 @@ class Sessao extends Object {
 	* @param 	void
 	* @return 	void
 	*/	
-	function controle() {
+	public function controle() {
+        
 		if (isset($_COOKIE[GBA_COOKIE_NAME])) {
 			session_name(GBA_COOKIE_NAME);
 			session_start();	
@@ -39,11 +40,20 @@ class Sessao extends Object {
 		if ($boAutenticado === false) {
 			header("Location: " . GBA_URL_SISTEMA . "login.php");
 		}
-		// Adiciona registro no Hisorico de navegacao
-		$_SESSION['historico'][] = str_replace(GBA_PATH_SISTEMA, '', $_SERVER['SCRIPT_FILENAME']);
+		
+        // Adiciona registro no Historico de navegacao
+        // Verificando se a ultima pagina ja nao esta gravada
+        
+        $arHistorico = $_SESSION['historico'];
+        $stUltimaPagina = str_replace(GBA_PATH_SISTEMA, '', $_SERVER['SCRIPT_FILENAME']);
+        if ($arHistorico[count($arHistorico)-1] != $stUltimaPagina ) {
+                $_SESSION['historico'][] = $stUltimaPagina;
+        }
+		unset($arHistorico);
+        
 	}
 	
-	function fecha() {
+	public function fecha() {
 		
 		session_name(GBA_COOKIE_NAME);
 		if (!isset($_SESSION)) {
@@ -75,7 +85,7 @@ class Sessao extends Object {
 		return $boRetorno;
 	}
 	
-	function abre( $stUsuario, $stSenha ) {
+	public function abre( $stUsuario, $stSenha ) {
 	
 		$boRetorno = false;
 		
@@ -147,20 +157,28 @@ class Sessao extends Object {
 	
 	}
 	
-	function gravarMensagem($stMsg) {
+	public function gravarMensagem($stMsg) {
 		
 		if (!isset($_SESSION)) {
 			$this->setErro('Sessão não criada ao tentar registrar Mensagem', true);
 			return false;
 		}
 		
-		$arMsgSessao = $_SESSION['sessao']['msg'];
+		$arMsgSessao = $_SESSION['msg'];
 		$arMsgSessao[] = $stMsg;
-		$_SESSION['sessao']['msg'] = $arMsgSessao;
+		$_SESSION['msg'] = $arMsgSessao;
 		return true;
 		
 	}
 
-	
+    
+    public function mostraUltimaMensagem() {
+        
+        $arMsgSessao = $_SESSION['msg'];
+        $stUltimaMensagem = $arMsgSessao[count($arMsgSessao)-1];
+        return $stUltimaMensagem;
+
+    }
+
 }
 ?>
