@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Classe Est�tica de Depura��o e Usos Diversos
-    * Data de Cria��o: 16/11/2007
+    * Classe Estatica de Depuracao e Usos Diversos
+    * Data de Criacao: 16/11/2007
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
