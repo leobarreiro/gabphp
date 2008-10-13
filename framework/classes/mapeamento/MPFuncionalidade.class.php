@@ -5,7 +5,7 @@
     * @link http://www.cielnews.com/gba
     * 
     * Classe de Mapeamento para Tabela gba_funcionalidade
-    * Data de Cria��o: 21/06/2008
+    * Data de Criacao: 21/06/2008
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
