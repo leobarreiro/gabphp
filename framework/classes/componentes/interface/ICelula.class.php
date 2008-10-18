@@ -14,7 +14,7 @@ var $stValign;
 var $inColspan;
 var $inRowspan;
 
-function ICelula($stWidth='', $stAlign='left', $stValign='top') {
+function ICelula($stWidth='', $stAlign='', $stValign='top') {
 	parent::IComponenteBase();
 	$this->stWidth = $stWidth;
 	$this->stAlign = $stAlign;

@@ -16,7 +16,7 @@ var $stCellSpacing;
 
 function ITabela() {
 	parent::IComponenteBase();
-	$this->stAlign = '';
+	$this->stAlign = 'center';
 	$this->stWidth = '';
 	$this->stHeight = '';
 	$this->stCellPadding = '';
@@ -81,7 +81,7 @@ function montaHtml() {
 		$stHtml .= ' id="' . $this->getId() . '"';
 	}
 	if (strlen($this->getAlign())) {
-		$stHtml .= ' align=' . $this->getAlign();
+		$stHtml .= ' align="' . $this->getAlign() . '"';
 	}
 	if (strlen($this->getCellPadding())) {
 		$stHtml .= ' cellpadding=' . $this->getCellPadding();
