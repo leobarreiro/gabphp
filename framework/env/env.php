@@ -149,6 +149,13 @@ define("GBA_FUSO_HORARIO", '0');
 
 
 /* *******************************
+ * Outras Configuracoes
+ * ***************************** */
+
+define("GBA_RESULTADOS_POR_PAGINA", 20);
+
+
+/* *******************************
  * Versão do Sistema
  * ***************************** */
 
