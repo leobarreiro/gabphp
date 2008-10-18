@@ -43,13 +43,16 @@ class Sessao extends Object {
 		
         // Adiciona registro no Historico de navegacao
         // Verificando se a ultima pagina ja nao esta gravada
-        
-        $arHistorico = $_SESSION['historico'];
-        $stUltimaPagina = str_replace(GBA_PATH_SISTEMA, '', $_SERVER['SCRIPT_FILENAME']);
-        if ($arHistorico[count($arHistorico)-1] != $stUltimaPagina ) {
-                $_SESSION['historico'][] = $stUltimaPagina;
-        }
-		unset($arHistorico);
+
+		$stUltimaPagina = str_replace(GBA_PATH_SISTEMA, '', $_SERVER['SCRIPT_FILENAME']);
+
+		if (count($_SESSION['historico']) == 0) {
+				$_SESSION['historico'][] = $stUltimaPagina;
+		} else {
+				if ( isset($_SESSION['historico'][count($_SESSION['historico'])-1]) && ($_SESSION['historico'][count($_SESSION['historico'])-1] != $stUltimaPagina) ) {
+						$_SESSION['historico'][] = $stUltimaPagina;
+				}
+		}
         
 	}
 	
@@ -130,7 +133,7 @@ class Sessao extends Object {
 					session_name(GBA_COOKIE_NAME);
 					session_start();
 				}			
-				// Inicializa Valores da Sessao			
+				// Inicializa Valores da Sessao		
 				$_SESSION['sessao'] = array();			
 				$_SESSION['sessao']['codsessao'] = $obMPSessao->getInsertId(); 
 				$_SESSION['sessao']['codusuario'] = $rsUsuario->getValor('codusuario');
@@ -146,6 +149,9 @@ class Sessao extends Object {
 				
 				$_SESSION['msg'] = array();
 				$_SESSION['msg'][] = "Login efetuado com sucesso";
+
+                $_SESSION['titulo'] = '';
+				$_SESSION['historico'] = array();
 				
 				$_SESSION['env'] = array();
 				$_SESSION['env']['urlBaseSistema'] = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['SCRIPT_NAME'], 0, (strrpos($_SERVER['SCRIPT_NAME'], '/')+1));
@@ -157,6 +163,11 @@ class Sessao extends Object {
 	
 	}
 	
+	/**
+	 * Grava uma Mensagem do Sistema na Sessao
+	 * @param String Mensagem
+	 * @return Boolean
+	 */ 
 	public function gravarMensagem($stMsg) {
 		
 		if (!isset($_SESSION)) {
@@ -171,7 +182,11 @@ class Sessao extends Object {
 		
 	}
 
-    
+    /**
+	 * Retorna a ultima mensagem gravada na Sessao
+	 * @param void
+	 * @return String Mensagem
+	 */ 
     public function mostraUltimaMensagem() {
         
         $arMsgSessao = $_SESSION['msg'];
@@ -179,6 +194,36 @@ class Sessao extends Object {
         return $stUltimaMensagem;
 
     }
+	
+	/**
+	 * Grava na Sessao o Titulo de Pagina
+	 * @param String Titulo
+	 */ 
+	public function gravarTituloPagina($stTitulo) {
+
+		if (!isset($_SESSION)) {
+			$this->setErro('Sessão não criada ao tentar gravar Título de Página', true);
+            return false;
+		}
+        $_SESSION['titulo'] = $stTitulo;
+        return true;
+
+	}
+
+	/**
+	 * Recupera da Sessao o Titulo de Pagina previamente gravado
+	 * @param void
+	 * @return String Titulo de Pagina
+	 */ 
+	public function recuperarUltimoTituloPagina() {
+		
+		if (!isset($_SESSION['titulo'])) {
+			return false;
+		}
+		return $_SESSION['titulo'];
+	
+	}
+
 
 }
 ?>
