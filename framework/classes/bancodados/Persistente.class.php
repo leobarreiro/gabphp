@@ -176,6 +176,11 @@ function incluir() {
 	return $inRetorno;
 }
 
+/**
+ * Recupera Registros no Banco de Dados
+ * @return Resource Registros do Banco
+*/
+
 function recuperar() {
 
 	$stSQL = "SELECT ";
@@ -375,6 +380,7 @@ function montaLista() {
 * @return 	Resource Consulta Banco
 */
 function executaLista($ordemSQL='') {
+
 	$this->stDebug = $this->montaLista();
 	if (strlen($ordemSQL)) {
 		$this->stDebug = $this->montaOrderBySQL($this->stDebug, $ordemSQL);
@@ -391,7 +397,9 @@ function executaLista($ordemSQL='') {
 	else {
 		$this->inRegSelecionados = 0;
 	}
+
 	return $this->roConsulta;
+
 }
 
 
