@@ -13,6 +13,7 @@ include_once (GBA_PATH_CLA_INT . 'IHtml.class.php');
 include_once (GBA_PATH_CLA_INT . 'IDiv.class.php');
 include_once (GBA_PATH_CLA_INT . 'IFormulario.class.php');
 include_once (GBA_PATH_CLA_INT . 'ITabela.class.php');
+include_once (GBA_PATH_CLA_INT . 'ITabelaPaginacao.class.php');
 include_once (GBA_PATH_CLA_INT . 'ILinha.class.php');
 include_once (GBA_PATH_CLA_INT . 'ICelula.class.php');
 include_once (GBA_PATH_CLA_INT . 'IInput.class.php');
