@@ -13,12 +13,15 @@ var $inRows;
 var $stValue;
 var $obEvento;
 
-function ITextArea() {
+function ITextArea($stIdNome='') {
 	parent::IComponenteBase();
 	$this->inCols = 0;
 	$this->inRows = 0;
 	$this->stValue = '';
 	$this->stType = 'textarea';
+	if (strlen($stIdNome) > 0) {
+		$this->setNomeId($stIdNome);
+	}
 }
 
 function setCols($integer) { $this->inCols = $integer; }
