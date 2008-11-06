@@ -153,6 +153,8 @@ class Sessao extends Object {
                 $_SESSION['titulo'] = '';
 				$_SESSION['historico'] = array();
 				
+				$_SESSION['pesquisa'] = array();
+				
 				$_SESSION['env'] = array();
 				$_SESSION['env']['urlBaseSistema'] = 'http://' . $_SERVER['HTTP_HOST'] . substr($_SERVER['SCRIPT_NAME'], 0, (strrpos($_SERVER['SCRIPT_NAME'], '/')+1));
 				$_SESSION['env']['pathBaseSistema'] = substr($_SERVER['SCRIPT_FILENAME'], 0, (strrpos($_SERVER['SCRIPT_FILENAME'], '/')+1));
@@ -223,7 +225,34 @@ class Sessao extends Object {
 		return $_SESSION['titulo'];
 	
 	}
-
+	
+	/**
+	 * Grava o Conteudo de um RecordSet na Sessao
+	 * @param String Nome do RecordSet
+	 * @param RecordSet Object
+	 * @return boolean
+	 */ 
+	public function gravarRecordSet($stNome, $obRecordSet) {
+		
+		$_SESSION['pesquisa'][$stNome] = $obRecordSet;
+		return true;
+		
+	}
+	
+	/**
+	 * Recupera o RecordSet na Sessão, identificado por stNome
+	 * @param String Nome do Recordset
+	 * @return RecordSet Object
+	 */ 
+	public function recuperarRecordSet($stNome) {
+		
+		if (isset($_SESSION['pesquisa'][$stNome])) {
+			return $_SESSION['pesquisa'][$stNome];
+		} else {
+			return false;
+		}
+		
+	}
 
 }
 ?>
