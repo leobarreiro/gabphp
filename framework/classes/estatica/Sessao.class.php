@@ -141,6 +141,8 @@ class Sessao extends Object {
 				$_SESSION['sessao']['senhausuario'] = $rsUsuario->getValor('senhausuario');
 				$_SESSION['sessao']['nomecompleto'] = $rsUsuario->getValor('nomecompleto');
 				$_SESSION['sessao']['email'] = $rsUsuario->getValor('email');
+				$_SESSION['sessao']['telefone'] = $rsUsuario->getValor('telefone');
+				$_SESSION['sessao']['celular'] = $rsUsuario->getValor('celular');
 				$_SESSION['sessao']['administrador'] = $rsUsuario->getValor('administrador');
 				$_SESSION['sessao']['agendaempresa'] = $rsUsuario->getValor('agendaempresa');
 				$_SESSION['sessao']['datainicio'] = $obMPSessao->getValor('datainicio');
