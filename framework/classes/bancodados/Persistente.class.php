@@ -184,17 +184,31 @@ function incluir() {
 function recuperar() {
 
 	$stSQL = "SELECT ";
+	
 	// Campos
+	
 	if (count($this->getCampos()) > 0) {
+		
 		$stSQL .= " " . implode(', ', $this->getCampos()) . " ";
+		
 	} else {
+		
 		$stSQL .= " * ";
+		
 	}
+	
+	
 	// Tabela
+	
 	$stSQL .= " FROM `" . $this->getTabela() . "`";
+	
+	
 	// Condições
+	
 	$stSQL .= " WHERE 1 ";
+	
 	foreach($this->arCampos as $stCampo) {
+		
 		if (strlen($this->getValor($stCampo)) > 0) {
 			// Numerico
 			if (in_array($this->getTipoCampo($stCampo), $this->arTipoNumerico)) {
@@ -214,7 +228,9 @@ function recuperar() {
 				}
 			}
 		}
+		
 	}
+	
 	$stSQL .= " ";
 	$this->stSQL = $stSQL;
 	
@@ -461,6 +477,13 @@ function montaOrderBySQL($stSQL, $stOrder='') {
 	}
 
 	return $stSQL;
+}
+
+public function preparaSQL($stSql) {
+	
+	$stSql = str_replace(array("\n", "\t", "\r"), array(" ", "", " "), $stSql);
+	return $stSql;
+
 }
 
 }
