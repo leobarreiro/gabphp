@@ -146,6 +146,8 @@ define("GBA_COOKIE_NAME", 'tcclbarreiro');
  * ***************************** */
 
 define("GBA_FUSO_HORARIO", '0');
+define("GBA_MOEDA_PADRAO", 'R$');
+define("GBA_FORMATO_DATA", '%d/%m/%Y');
 
 
 /* *******************************
