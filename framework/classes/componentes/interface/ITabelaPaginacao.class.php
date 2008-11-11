@@ -48,6 +48,12 @@ class ITabelaPaginacao extends ITabela {
 	
 	// Links para navegacao e paginacao
 	public $obDivNavegacao;
+	
+	// Array de campos para tratamento de moeda (valor)
+	public $arCamposValor;
+	
+	// Array de campos para tratamento de datas
+	public $arCamposData;
 
 	
 	public function ITabelaPaginacao() {
@@ -69,6 +75,9 @@ class ITabelaPaginacao extends ITabela {
 		$this->stLinkEdicao = '';
 		
 		$this->obDivNavegacao = new IDiv();
+		
+		$this->arCamposData = array();
+		$this->arCamposValor = array();
 		
 	}
 	
@@ -95,6 +104,10 @@ class ITabelaPaginacao extends ITabela {
 	public function setLinkEdicao( $stLink ) { $this->stLinkEdicao = $stLink; }
 	
 	public function setEventoClickLinkEdicao( $stInstrucoesClick ) { $this->stEventoClickLinkEdicao = $stInstrucoesClick; }
+	
+	public function setCamposValor( $arCamposVal ) { $this->arCamposValor = $arCamposVal; }
+	
+	public function setCamposData( $arCamposData ) { $this->arCamposData = $arCamposData; }
 	
 	/* Metodos GET */
 	
@@ -162,8 +175,17 @@ class ITabelaPaginacao extends ITabela {
 				// Definir aqui o estilo CSS da Linha
 				
 				for ($i=0; $i<count($arChaves); $i++) {
+					
 					$obCelula = new ICelula();
 					$stConteudo = (strlen($arLin[$arChaves[$i]]) > 0) ? ($arLin[$arChaves[$i]]) : '&nbsp;';
+					
+					if ($stConteudo != '&nbsp;' && in_array($arChaves[$i], $this->arCamposData)) {
+						$stConteudo = Sistema::formataDataHora($stConteudo);
+					}
+
+					if ($stConteudo != '&nbsp;' && in_array($arChaves[$i], $this->arCamposValor)) {
+						$stConteudo = Sistema::formataNumeroParaLeitura($stConteudo);
+					}
 					
 					// Define Link de Edicao ou Texto simples
 					
