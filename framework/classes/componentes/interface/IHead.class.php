@@ -17,7 +17,7 @@ public $arJSArquivo; 	// Array de Arquivos Javascript para inclusão no Cabecalh
 /* TODO: implementar favicon para icone de navegador */
 // exemplo: <link rel="shortcut icon" type="image/ico" href="http://felipetonello.com/blog/wp-content/themes/road-to-heaven/favicon.png" />
 
-public function IHead($stTitleHead='', $stCharset='ISO-8859-1') {
+public function IHead($stTitleHead='', $stCharset='UTF-8') {
 	
 	parent::IComponenteBase();
 	$this->setTag('head');
@@ -75,7 +75,7 @@ function addMetaTag($stNome, $stValor) {
 function montaHtml() {
 
 	$stHtml = '<' . $this->getTag() . '>' . "\n";
-	$stHtml .= '	<meta http-equiv="Content-Type" content="text/html; charset=' . $this->getCharset() . '" />' . "\n";
+	//$stHtml .= '	<meta http-equiv="Content-Type" content="text/html; charset=' . $this->getCharset() . '" />' . "\n";
 
 	if (strlen($this->getTitle())) {
 		$stHtml .= '	<title>' . $this->getTitle() . '</title>' . "\n";

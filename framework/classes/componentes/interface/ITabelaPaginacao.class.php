@@ -245,7 +245,7 @@ class ITabelaPaginacao extends ITabela {
 		if ($this->inTotalPaginas > $this->inPaginaAtual) {
 			
 			$stLinkProximo = '?pg=' . ($this->inPaginaAtual + 1);
-			$obLinkProximo = new ILink('PrÃ³ximo', $stLinkProximo);
+			$obLinkProximo = new ILink('Próximo', $stLinkProximo);
 			$this->obDivNavegacao->addComponente(array(new ITexto('&nbsp;'), $obLinkProximo, new ITexto('&nbsp;')));
 			
 		}

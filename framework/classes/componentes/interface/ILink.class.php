@@ -10,6 +10,7 @@ class ILink extends IComponenteBase {
 var $stTexto;
 var $stHref;
 var $stTarget;
+var $stRel;
 var $obEvento;
 
 function ILink($stText=null, $stHref=null, $stTarget='_self') {
@@ -17,15 +18,18 @@ function ILink($stText=null, $stHref=null, $stTarget='_self') {
 	$this->stTexto = $stText;
 	$this->stHref = $stHref;
 	$this->stTarget = $stTarget;
+	$this->stRel = '';
 }
 
 function setTexto($string) { $this->stTexto = $string; }
 function setHref($string) { $this->stHref = $string; }
 function setTarget($string) { $this->stTarget = $string; }
+function setRel($stRel) { $this->stRel = $stRel; }
 
 function getTexto() { return $this->stTexto; }
 function getHref() { return $this->stHref; }
 function getTarget() { return $this->stTarget; }
+function getRel() { return $this->stRel; }
 
 function montaHtml() {
 	$stHtml = '<a';
@@ -49,6 +53,9 @@ function montaHtml() {
 	}
 	if (strlen($this->getTitle())) {
 		$stHtml .= ' title="' . $this->getTitle() . '"';
+	}
+	if (strlen($this->getRel())) {
+		$stHtml .= ' rel="' . $this->getRel() . '"';
 	}
 	
 	$this->obEvento->montaHtml();

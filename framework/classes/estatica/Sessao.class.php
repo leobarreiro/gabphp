@@ -175,7 +175,7 @@ class Sessao extends Object {
 	public function gravarMensagem($stMsg) {
 		
 		if (!isset($_SESSION)) {
-			$this->setErro('SessÃ£o nÃ£o criada ao tentar registrar Mensagem', true);
+			$this->setErro('Sessão não criada ao tentar registrar Mensagem', true);
 			return false;
 		}
 		
@@ -206,7 +206,7 @@ class Sessao extends Object {
 	public function gravarTituloPagina($stTitulo) {
 
 		if (!isset($_SESSION)) {
-			$this->setErro('SessÃ£o nÃ£o criada ao tentar gravar TÃ­tulo de PÃ¡gina', true);
+			$this->setErro('Sessão não criada ao tentar gravar Título de Página', true);
             return false;
 		}
         $_SESSION['titulo'] = $stTitulo;

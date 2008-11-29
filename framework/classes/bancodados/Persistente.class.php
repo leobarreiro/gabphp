@@ -203,7 +203,7 @@ function recuperar() {
 	$stSQL .= " FROM `" . $this->getTabela() . "`";
 	
 	
-	// Condições
+	// Condicoes
 	
 	$stSQL .= " WHERE 1 ";
 	
@@ -383,6 +383,8 @@ function excluir() {
 	else {
 		$this->inRegAfetados = 0;
 	}
+	
+	return $this->inRegAfetados;
 
 }
 
@@ -426,21 +428,33 @@ function executaLista($ordemSQL='') {
 function executaSQL($stSQL) {
 
 	if (strlen($stSQL)) {
+		
 		$this->stDebug = $stSQL;
 		$this->roConsulta = $this->obConexao->executaSQL($this->stDebug);
+		
 		if ($this->obConexao->getErro() > 0) {
 			$this->stDebug = $this->obConexao->getMsg();
 			$this->roConsulta = null;
 		}
-		if (mysql_num_rows($this->roConsulta)) {
+		
+		if (@mysql_num_rows($this->roConsulta)) {
 			$this->inRegSelecionados = mysql_num_rows($this->roConsulta);
-		}
-		else {
+		} else {
 			$this->inRegSelecionados = 0;
 		}
+		
+		if (@mysql_affected_rows($this->roConsulta)) {
+			$this->inRegAfetados = mysql_affected_rows($this->roConsulta);
+		} else {
+			$this->inRegAfetados = 0;
+		}
+		
 	} else {
+		
 		$this->roConsulta = false;
+		
 	}
+	
 	return $this->roConsulta;
 }
 

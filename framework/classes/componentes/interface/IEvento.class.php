@@ -9,6 +9,7 @@ var $stOnChange;
 var $stOnSelect;
 var $stOnClick;
 var $stOnLoad;
+var $stOnUnLoad;
 var $stOnDblClick;
 var $stOnBlur;
 var $stOnMouseDown;
@@ -23,6 +24,7 @@ function setOnChange($valor) { $this->stOnChange = $valor; }
 function setOnSelect($valor) { $this->stOnSelect = $valor; }
 function setOnClick($valor) { $this->stOnClick = $valor; }
 function setOnLoad($valor) { $this->stOnLoad = $valor; }
+function setOnUnLoad($valor) { $this->stOnUnLoad = $valor; }
 function setOnDblClick($valor) { $this->stOnDblClick = $valor; }
 function setOnBlur($valor) { $this->stOnBlur = $valor; }
 function setOnMouseDown($valor) { $this->stMouseDown = $valor; }
@@ -36,6 +38,7 @@ function getOnChange() { return $this->stOnChange; }
 function getOnSelect() { return $this->stOnSelect; }
 function getOnClick() { return $this->stOnClick; }
 function getOnLoad() { return $this->stOnLoad; }
+function getOnUnLoad() { return $this->stOnUnLoad; }
 function getOnDblClick() { return $this->stOnDblClick; }
 function getOnBlur() { return $this->stOnBlur; }
 function getOnMouseDown() { return $this->stOnMouseDown; }
@@ -52,6 +55,7 @@ function montaHtml() {
 	if (strlen($this->getOnSelect())) { $stHtml .= ' onSelect="' . $this->getOnSelect() . '"'; }
 	if (strlen($this->getOnClick())) { $stHtml .= ' onClick="' . $this->getOnClick() . '"'; }
 	if (strlen($this->getOnLoad())) { $stHtml .= ' onLoad="' . $this->getOnLoad() . '"'; }
+    if (strlen($this->getOnUnLoad())) { $stHtml .= ' onunload="' . $this->getOnUnLoad() . '"'; }
 	if (strlen($this->getOnDblClick())) { $stHtml .= ' onDblClick="' . $this->getOnDblClick() . '"'; }
 	if (strlen($this->getOnBlur())) { $stHtml .= ' onBlur="' . $this->getOnBlur() . '"'; }
 	if (strlen($this->getOnMouseDown())) { $stHtml .= ' onMouseDown="' . $this->getOnMouseDown() . '"'; }

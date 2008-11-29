@@ -22,6 +22,7 @@ include_once (GBA_PATH_CLA_INT . 'ITexto.class.php');
 include_once (GBA_PATH_CLA_INT . 'ILink.class.php');
 include_once (GBA_PATH_CLA_INT . 'ISelect.class.php');
 include_once (GBA_PATH_CLA_INT . 'IRadio.class.php');
+include_once (GBA_PATH_CLA_INT . 'IRadioSimNao.class.php');
 include_once (GBA_PATH_CLA_INT . 'ICheckBox.class.php');
 include_once (GBA_PATH_CLA_INT . 'IImg.class.php');
 include_once (GBA_PATH_CLA_INT . 'IScript.class.php');
