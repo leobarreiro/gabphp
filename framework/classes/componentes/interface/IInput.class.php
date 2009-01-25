@@ -12,6 +12,7 @@ var $inMaxLength;
 var $stValue;
 var $stType;
 var $boReadOnly;
+var $boDisabled;
 
 function IInput($stNomeId='', $stValor='', $inSize=0, $inMaxLength=0) {
 	parent::IComponenteBase();
@@ -24,17 +25,20 @@ function IInput($stNomeId='', $stValor='', $inSize=0, $inMaxLength=0) {
 	$this->stValue = $stValor;
 	$this->stType = 'text';
 	$this->boReadOnly = false;
+	$this->boDisabled = false;
 }
 
 function setSize($string) { $this->inSize = $string; }
 function setMaxLength($string) { $this->inMaxLength = $string; }
 function setValue($string) { $this->stValue = $string; }
 function setReadOnly($boolean) { $this->boReadOnly = $boolean; }
+function setDisabled($boolean) { $this->boDisabled = $boolean; }
 
 function getSize() { return $this->inSize; }
 function getMaxLength() { return $this->inMaxLength; }
 function getValue() { return $this->stValue; }
 function getReadOnly() { return $this->boReadOnly; }
+function getDisabled() { return $this->boDisabled; }
 
 function montaHtml() {
 	$stHtml = '<input';
@@ -61,6 +65,9 @@ function montaHtml() {
 	}
 	if ($this->getReadOnly()) {
 		$stHtml .= ' readonly="yes"';
+	}
+	if ($this->getDisabled()) {
+		$stHtml .= ' disabled="disabled"';
 	}
 	if (strlen($this->getStyle())) {
 		$stHtml .= ' style="' . $this->getStyle() . '"';
