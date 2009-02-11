@@ -436,3 +436,18 @@ ul li {
 	font-size: 8pt;	
 	padding: 1px;
 }
+
+
+.InpCifra {
+	width: 60px;
+	text-align: right;
+	border-left: none;
+}
+
+.InpMoeda {
+	background : #cecece;
+	color: #444444;
+	margin-right: 0px;
+	text-align: left;
+	border-right: none;
+}
