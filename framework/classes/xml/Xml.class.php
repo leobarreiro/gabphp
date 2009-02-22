@@ -21,10 +21,10 @@ class Xml {
 		$this->obDom = new DOMDocument();
 		$this->error = null;
 		$this->arError = array(	0=>'Sem erro', 
-								1=>'Arquivo XML não definido', 
-								2=>'Arquivo XML não encontrado', 
-								3=>'Arquivo XML não carregado', 
-								4=>'Arquivo XML não validado' );
+								1=>'Arquivo XML nÃ£o definido', 
+								2=>'Arquivo XML nÃ£o encontrado', 
+								3=>'Arquivo XML nÃ£o carregado', 
+								4=>'Arquivo XML nÃ£o validado' );
 		
 		$this->openXml($xmlPath);
 	}
@@ -70,7 +70,7 @@ class Xml {
 		unset($arErrMsg);
 	}
 	
-	// Métodos para compatibilidade com classes de componentes HTML
+	// Mï¿½todos para compatibilidade com classes de componentes HTML
 	function montaHtml() { 
 		
 		$arRetira = array('<?xml version="1.0" encoding="ISO-8859-1"?>', '<?xml version="1.0" encoding="UTF-8"?>');
