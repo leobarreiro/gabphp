@@ -1,6 +1,23 @@
 <?php
+/**
+ 	* Framework GBAPHP
+    * @license : GNU Lesser General Public License v.3
+    * @link http://www.cielnews.com/gba
+    * 
+    * Classe de Campo de Tabela em PDF
+    * Data de Criação: 27/11/2007
+    * @author Leopoldo Braga Barreiro
+    *     
+    * @package GBAPHP
+    * @subpackage
+    *     
+    * $Id: $
+    *     
+    * Casos de uso : 
+*/
 
-class CampoTabelaPDF {
+class CampoTabelaPDF
+{
 	var $stNomeCampo;
 	var $stDescricaoCampo;
 	var $stFonte;
@@ -11,27 +28,102 @@ class CampoTabelaPDF {
 	var $inAlturaCelula;
 	var $stBorda;
 	
-	function setNomeCampo($stValor) { $this->stNomeCampo = $stValor; }
-	function setDescricaoCampo($stValor) { $this->stDescricaoCampo = $stValor; }
-	function setFonte($stValor) { $this->stFonte = $stValor; }
-	function setEstiloFonte($stValor) { $this->stEstiloFonte = $stValor; }
-	function setAlturaFonte($inValor) { $this->inAlturaFonte = $inValor; }
-	function setAlinhamento($stValor) { $this->stAlinhamento = $stValor; }
-	function setEspessuraCelula($inValor) { $this->inEspessuraCelula = $inValor; }
-	function setAlturaCelula($inValor) { $this->inAlturaCelula = $inValor; }
-	function setBorda($stValor) { $this->stBorda = $stValor; }
+	public function setNomeCampo($stValor)
+	{
+		$this->stNomeCampo = $stValor;
+	}
 	
-	function getNomeCampo() { return $this->stNomeCampo; }
-	function getDescricaoCampo() { return $this->stDescricaoCampo; }
-	function getFonte() { return $this->stFonte; }
-	function getEstiloFonte() { return $this->stEstiloFonte; }
-	function getAlturaFonte() { return $this->inAlturaFonte; }
-	function getAlinhamento() { return $this->stAlinhamento; }
-	function getEspessuraCelula() { return $this->inEspessuraCelula; }
-	function getAlturaCelula() { return $this->inAlturaCelula; }
-	function getBorda() {return $this->stBorda; }
+	public function setDescricaoCampo($stValor)
+	{
+		$this->stDescricaoCampo = $stValor;
+	}
 	
-	function campoTabelaPDF() {
+	public function setFonte($stValor)
+	{
+		$this->stFonte = $stValor;
+	}
+	
+	public function setEstiloFonte($stValor)
+	{
+		$this->stEstiloFonte = $stValor;
+	}
+	
+	public function setAlturaFonte($inValor)
+	{
+		$this->inAlturaFonte = $inValor;
+	}
+	
+	public function setAlinhamento($stValor)
+	{
+		$this->stAlinhamento = $stValor;
+	}
+	
+	public function setEspessuraCelula($inValor)
+	{
+		$this->inEspessuraCelula = $inValor;
+	}
+	
+	public function setAlturaCelula($inValor)
+	{
+		$this->inAlturaCelula = $inValor;
+	}
+	
+	public function setBorda($stValor)
+	{
+		$this->stBorda = $stValor;
+	}
+	
+	public function getNomeCampo()
+	{
+		return $this->stNomeCampo;
+	}
+	
+	public function getDescricaoCampo()
+	{
+		return $this->stDescricaoCampo;
+	}
+	
+	public function getFonte()
+	{
+		return $this->stFonte;
+	}
+	
+	public function getEstiloFonte()
+	{
+		return $this->stEstiloFonte;
+	}
+	
+	public function getAlturaFonte() 
+	{
+		return $this->inAlturaFonte;
+	}
+	
+	public function getAlinhamento()
+	{
+		return $this->stAlinhamento;
+	}
+	
+	public function getEspessuraCelula()
+	{
+		return $this->inEspessuraCelula;
+	}
+	
+	public function getAlturaCelula()
+	{
+		return $this->inAlturaCelula;
+	}
+	
+	public function getBorda()
+	{
+		return $this->stBorda;
+	}
+	
+	/**
+	 * Método Construtor
+	 * @return void
+	 */
+	public function campoTabelaPDF()
+	{
 		$this->stNomeCampo = '';
 		$this->stDescricaoCampo = '';
 		$this->stFonte = 'Arial';
@@ -43,7 +135,8 @@ class CampoTabelaPDF {
 		$this->stBorda = 'LTRB';		
 	}
 	
-	function montaCelulaPDF() {
+	public function montaCelulaPDF()
+	{
 		$arCelulaPDF = array();
 		$arCelulaPDF['nomeCampo'] = $this->stNomeCampo;
 		$arCelulaPDF['descricao'] = $this->stDescricaoCampo;
@@ -56,7 +149,8 @@ class CampoTabelaPDF {
 		$arCelulaPDF['borda'] = $this->stBorda;		
 	}
 	
-	function geraCelulaPDF(&$obListaPDF) {
+	public function geraCelulaPDF(&$obListaPDF)
+	{
 		$obListaPDF->SetFont($this->stFonte, $this->stEstiloFonte, $this->inAlturaFonte);
 		$obListaPDF->Cell($this->inEspessuraCelula, $this->inAlturaCelula, $this->stDescricaoCampo, $this->stBorda, 0, $this->stAlinhamento, 0, '');		
 	}
