@@ -19,47 +19,55 @@
 include_once ( GBA_PATH_CLA . 'Object.class.php');
 include_once ( GBA_PATH_ENV . 'LoadDefs.php');
 
-class Sessao extends Object {
+class Sessao extends Object
+{
 	
 	/**
 	* Controla a Autenticacao de Usuario no Sistema. Deve ser chamado no inicio de cada pagina.
 	* @param 	void
 	* @return 	void
 	*/	
-	public function controle() {
-        
-		if (isset($_COOKIE[GBA_COOKIE_NAME])) {
+	public function controle()
+	{    
+		if (isset($_COOKIE[GBA_COOKIE_NAME]))
+		{
 			session_name(GBA_COOKIE_NAME);
 			session_start();	
 		}
-		if (isset($_SESSION) && isset($_SESSION['sessao']) && isset($_SESSION['sessao']['codsessao'])) {
+		if (isset($_SESSION) && isset($_SESSION['sessao']) && isset($_SESSION['sessao']['codsessao']))
+		{
 			$boAutenticado = true;
-		} else {
+		}
+		else
+		{
 			$boAutenticado = false;
 		}
-		if ($boAutenticado === false) {
+		if ($boAutenticado === false)
+		{
 			header("Location: " . GBA_URL_SISTEMA . "login.php");
 		}
-		
         // Adiciona registro no Historico de navegacao
         // Verificando se a ultima pagina ja nao esta gravada
-
 		$stUltimaPagina = str_replace(GBA_PATH_SISTEMA, '', $_SERVER['SCRIPT_FILENAME']);
 
-		if (count($_SESSION['historico']) == 0) {
+		if (count($_SESSION['historico']) == 0)
+		{
 				$_SESSION['historico'][] = $stUltimaPagina;
-		} else {
-				if ( isset($_SESSION['historico'][count($_SESSION['historico'])-1]) && ($_SESSION['historico'][count($_SESSION['historico'])-1] != $stUltimaPagina) ) {
-						$_SESSION['historico'][] = $stUltimaPagina;
-				}
 		}
-        
+		else
+		{
+			if ( isset($_SESSION['historico'][count($_SESSION['historico'])-1]) && ($_SESSION['historico'][count($_SESSION['historico'])-1] != $stUltimaPagina) )
+			{
+				$_SESSION['historico'][] = $stUltimaPagina;
+			}
+		}
 	}
 	
-	public function fecha() {
-		
+	public function fecha()
+	{	
 		session_name(GBA_COOKIE_NAME);
-		if (!isset($_SESSION)) {
+		if (!isset($_SESSION))
+		{
 			session_start();
 		}
 		$boRetorno = false;
@@ -74,7 +82,8 @@ class Sessao extends Object {
 		$obFuso->setFormatoHora("H:i:s");
 		$obFuso->calculaDataHoraLocal();		
 		
-		if (isset($_SESSION['sessao']) && isset($_SESSION['sessao']['codsessao'])) {
+		if (isset($_SESSION['sessao']) && isset($_SESSION['sessao']['codsessao']))
+		{
 			$obMPSessao = new MPSessao;
 			$obMPSessao->addValor('codsessao', $_SESSION['sessao']['codsessao']);
 			$obMPSessao->addValor('ativa', 0);
@@ -88,10 +97,9 @@ class Sessao extends Object {
 		return $boRetorno;
 	}
 	
-	public function abre( $stUsuario, $stSenha ) {
-	
-		$boRetorno = false;
-		
+	public function abre( $stUsuario, $stSenha )
+	{
+		$boRetorno = false;	
 		require_once ( GBA_PATH_CLA_EST . 'Cookie.class.php' );
 		require_once ( GBA_PATH_CLA_EST . 'FusoHorario.class.php' );
 		require_once ( GBA_PATH_CLA_MAP . 'MPSessao.class.php' );
@@ -103,8 +111,8 @@ class Sessao extends Object {
 		$obMPUsuario->addValor( 'senhausuario', md5(strip_tags($stSenha)) );
 		$obMPUsuario->recuperar();
 		
-		if ( $obMPUsuario->getRegSelecionados() > 0 ) {
-			
+		if ( $obMPUsuario->getRegSelecionados() > 0 )
+		{	
 			$rsUsuario = new RecordSet;
 			$rsUsuario->setResultados($obMPUsuario->getConsulta());
 			
@@ -127,9 +135,11 @@ class Sessao extends Object {
 			
 			$obMPSessao->incluir();
 			
-			if ($obMPSessao->getRegAfetados() > 0) {
+			if ($obMPSessao->getRegAfetados() > 0)
+			{
 				// Cria a Sessao
-				if (!isset($_SESSION)) {
+				if (!isset($_SESSION))
+				{
 					session_name(GBA_COOKIE_NAME);
 					session_start();
 				}			
@@ -162,9 +172,7 @@ class Sessao extends Object {
 				$_SESSION['env']['pathBaseSistema'] = substr($_SERVER['SCRIPT_FILENAME'], 0, (strrpos($_SERVER['SCRIPT_FILENAME'], '/')+1));
 			}
 		}
-	
 		return $boRetorno;
-	
 	}
 	
 	/**
@@ -172,18 +180,17 @@ class Sessao extends Object {
 	 * @param String Mensagem
 	 * @return Boolean
 	 */ 
-	public function gravarMensagem($stMsg) {
-		
-		if (!isset($_SESSION)) {
-			$this->setErro('Sessão não criada ao tentar registrar Mensagem', true);
+	public function gravarMensagem($stMsg)
+	{	
+		if (!isset($_SESSION))
+		{
+			$this->setErro('SessÃ£o nÃ£o criada ao tentar registrar Mensagem', true);
 			return false;
 		}
-		
 		$arMsgSessao = $_SESSION['msg'];
 		$arMsgSessao[] = $stMsg;
 		$_SESSION['msg'] = $arMsgSessao;
 		return true;
-		
 	}
 
     /**
@@ -191,27 +198,26 @@ class Sessao extends Object {
 	 * @param void
 	 * @return String Mensagem
 	 */ 
-    public function mostraUltimaMensagem() {
-        
+    public function mostraUltimaMensagem()
+    {    
         $arMsgSessao = $_SESSION['msg'];
         $stUltimaMensagem = $arMsgSessao[count($arMsgSessao)-1];
         return $stUltimaMensagem;
-
     }
 	
 	/**
 	 * Grava na Sessao o Titulo de Pagina
 	 * @param String Titulo
 	 */ 
-	public function gravarTituloPagina($stTitulo) {
-
-		if (!isset($_SESSION)) {
-			$this->setErro('Sessão não criada ao tentar gravar Título de Página', true);
+	public function gravarTituloPagina($stTitulo)
+	{
+		if (!isset($_SESSION))
+		{
+			$this->setErro('SessÃ£o nÃ£o criada ao tentar gravar TÃ­tulo de PÃ¡gina', true);
             return false;
 		}
         $_SESSION['titulo'] = $stTitulo;
         return true;
-
 	}
 
 	/**
@@ -219,13 +225,13 @@ class Sessao extends Object {
 	 * @param void
 	 * @return String Titulo de Pagina
 	 */ 
-	public function recuperarUltimoTituloPagina() {
-		
-		if (!isset($_SESSION['titulo'])) {
+	public function recuperarUltimoTituloPagina()
+	{	
+		if (!isset($_SESSION['titulo']))
+		{
 			return false;
 		}
 		return $_SESSION['titulo'];
-	
 	}
 	
 	/**
@@ -234,11 +240,10 @@ class Sessao extends Object {
 	 * @param RecordSet Object
 	 * @return boolean
 	 */ 
-	public function gravarRecordSet($stNome, $obRecordSet) {
-		
+	public function gravarRecordSet($stNome, $obRecordSet)
+	{	
 		$_SESSION['pesquisa'][$stNome] = $obRecordSet;
-		return true;
-		
+		return true;	
 	}
 	
 	/**
@@ -246,15 +251,16 @@ class Sessao extends Object {
 	 * @param String Nome do Recordset
 	 * @return RecordSet Object
 	 */ 
-	public function recuperarRecordSet($stNome) {
-		
-		if (isset($_SESSION['pesquisa'][$stNome])) {
+	public function recuperarRecordSet($stNome)
+	{	
+		if (isset($_SESSION['pesquisa'][$stNome]))
+		{
 			return $_SESSION['pesquisa'][$stNome];
-		} else {
+		}
+		else
+		{
 			return false;
 		}
-		
 	}
-
 }
 ?>

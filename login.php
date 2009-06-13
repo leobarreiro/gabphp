@@ -4,7 +4,7 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Pgina de Login Padro
+    * Página de Login Padrão
     * Data de Criao: 21/06/2008
     * @author Leopoldo Braga Barreiro
     *     
@@ -21,7 +21,8 @@ include_once ('framework/env/LoadDefs.php');
 include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
 
 $obHtml = new IHtml;
-$obHtml->obHead->setUrlCssFile('framework/css/gbaphp.css');
+$obHtml->obHead->addCSSArquivo('framework/css/gbaphp.css');
+$obHtml->obBody->setCss('bodyLogin');
 
 $obForm = new IFormulario();
 $obForm->setId('frmLogin');
@@ -30,30 +31,57 @@ $obForm->setAction('autenticar.php');
 
 $obForm->obEvento->setOnSubmit("JsLogin()");
 
-$obImgLogo = new IImg('framework/images/logo.png', 'Login');
-$obImgLogo->setId('logoLogin');
-$obHtml->obBody->addComponente($obImgLogo);
+$obDivLogo = new IDiv('logoLogin');
+$obHtml->obBody->addComponente($obDivLogo);
 
 $obDiv1 = new IDiv();
-$obDiv1->setId('painelMsg');
+$obDiv1->setCss('painelMsg');
 $obTxtLogin = new ITexto('Entre com login e senha');
 $obDiv1->addComponente($obTxtLogin);
-
 $obHtml->obBody->addComponente($obDiv1);
 
-$obTabela = new ITabela();
-$obTabela->setId('tbLogin');
+$obDivLogin = new IDiv();
+$obDivLogin->setId('dvLogin');
 
-$obCel1 = new ICelula();
-$obTextoUsuario = new ITexto('Usu&aacute;rio');
-$obCel1->addComponente($obTextoUsuario);
-$obTabela->addCelula($obCel1, true);
-
-$obCel2 = new ICelula(); 
+$obParUsuario = new IParagrafo();
+$obLabelUsuario = new IDiv();
+$obLabelUsuario->setCss('texto');
+$obTxtUsuario = new ITexto('Usu&aacute;rio');
 $obInputUsuario = new IInput('usuario', '', 20, 20);
-$obCel2->addComponente($obInputUsuario);
-$obTabela->addCelula($obCel2);
 
+$obLabelUsuario->addComponente($obTxtUsuario);
+$obParUsuario->addComponente($obLabelUsuario);
+$obParUsuario->addComponente($obInputUsuario);
+$obDivLogin->addComponente($obParUsuario);
+
+$obParSenha = new IParagrafo();
+$obLabelSenha = new IDiv();
+$obLabelSenha->setCss('texto');
+$obTxtSenha = new ITexto('Senha');
+$obInputSenha = new IInput('senha', '', 20, 20);
+$obInputSenha->setType('password');
+
+$obLabelSenha->addComponente($obTxtSenha);
+$obParSenha->addComponente($obLabelSenha);
+$obParSenha->addComponente($obInputSenha);
+$obDivLogin->addComponente($obParSenha);
+
+$obParOk = new IParagrafo();
+$obInputOk = new IInput('entrar');
+$obInputOk->setCss('botaoEntrar');
+$obInputOk->setType('submit');
+$obInputOk->setValue('Entrar');
+$obInputOk->obEvento->setOnClick('JsLogin()');
+$obParOk->addComponente($obInputOk);
+
+$obDivLogin->addComponente($obParOk);
+
+$obForm->addComponente($obDivLogin);
+
+$obHtml->obBody->addComponente($obForm);
+
+
+/*
 $obCel3 = new ICelula();
 $obTxtSenha = new ITexto('Senha');
 $obCel3->addComponente($obTxtSenha);
@@ -68,16 +96,14 @@ $obTabela->addCelula($obCel4);
 $obCel5 = new ICelula('100%', 'center');
 $obCel5->setColspan(2);
 
-$obInputOk = new IInput('entrar');
-$obInputOk->setType('submit');
-$obInputOk->setValue('Entrar');
-$obInputOk->obEvento->setOnClick('JsLogin()');
+
 
 $obCel5->addComponente($obInputOk);
 $obTabela->addCelula($obCel5, true);
 
 $obForm->addComponente($obTabela);
 $obHtml->obBody->addComponente($obForm);
+*/
 
 $obScript = new IScript;
 $obScript->setType('text/javascript');

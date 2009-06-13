@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Pagina de Autenticao Inicial no Sistema
-    * Data de Criao: 25/01/2007
+    * Página de Autenticação Inicial no Sistema
+    * Data de Criação: 25/01/2007
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -20,10 +20,13 @@ include_once ( 'framework/env/env.php' );
 include_once ( 'framework/env/LoadDefs.php' );
 
 if ( isset($_POST['usuario']) && strlen($_POST['senha']) 
-	&& isset($_POST['senha']) && strlen($_POST['senha']) ) {
+	&& isset($_POST['senha']) && strlen($_POST['senha']) )
+{
 	$boSessao = Sessao::abre( strip_tags($_POST['usuario']), strip_tags($_POST['senha']) );
 	header("Location: " . GBA_URL_SISTEMA . "iniciar.php");
-} else {
+}
+else
+{
 	header("Location: " . GBA_URL_SISTEMA . "login.php");
 }
 ?>

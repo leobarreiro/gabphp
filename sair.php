@@ -4,8 +4,8 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Pgina de Encerramento de Sesso
-    * Data de Criao: 21/06/2008
+    * Página de Encerramento de Sessão
+    * Data de Criação: 21/06/2008
     * @author Leopoldo Braga Barreiro
     *     
     * @package GBAPHP
@@ -20,7 +20,8 @@ include ('framework/env/env.php');
 include_once ( GBA_PATH_ENV . 'LoadDefs.php');
 include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
 
-if (isset($_COOKIE[GBA_COOKIE_NAME])) {
+if (isset($_COOKIE[GBA_COOKIE_NAME]))
+{
 	$boRetorno = Sessao::fecha();
 	$boDestroi = Cookie::destroi(GBA_COOKIE_NAME);
 }

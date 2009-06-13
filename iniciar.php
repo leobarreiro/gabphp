@@ -4,7 +4,7 @@
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
-    * Pgina Inicial Padro
+    * Página Inicial Padrão
     * Data de Criao: 21/06/2008
     * @author Leopoldo Braga Barreiro
     *     
@@ -23,7 +23,7 @@ include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
 Sessao::controle();
 
 $obHtml = new IHtml;
-$obHtml->obHead->setUrlCssFile(GBA_URL_SISTEMA . "framework/css/gbaphp.css");
+$obHtml->obHead->addCSSArquivo(GBA_URL_SISTEMA . "framework/css/gbaphp.css");
 
 include ('framework/include/menu.php');
 

@@ -8,7 +8,7 @@ include_once (GBA_PATH_CLA_INT . 'IComponenteBase.class.php');
 include_once (GBA_PATH_CLA_INT . 'IHead.class.php');
 include_once (GBA_PATH_CLA_INT . 'IBody.class.php');
 
-header("Content-Type: text/html; charset=ISO8859-1",true);
+header("Content-Type: text/html; charset=UTF-8",true);
 
 class IHtml extends IComponenteBase {
 

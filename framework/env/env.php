@@ -16,15 +16,15 @@
  * Casos de uso : 
 */
 
-define("GBA_ERRORS", 123); // Para depuracao
+define("GBA_ERRORS", 100); // Para depuracao
 
 error_reporting(GBA_ERRORS);
 
 define("GBA_URL_BASE", 'http://localhost/');
-define("GBA_PATH_BASE", '/home/sistemas/');
+define("GBA_PATH_BASE", '/home/cielnews/');
 
-define("GBA_URL_SISTEMA", GBA_URL_BASE . 'tcc/');
-define("GBA_PATH_SISTEMA", GBA_PATH_BASE . 'tcc/');
+define("GBA_URL_SISTEMA", GBA_URL_BASE . 'gba/');
+define("GBA_PATH_SISTEMA", GBA_PATH_BASE . 'gba/');
 
 define("GBA_PATH_FWK", GBA_PATH_BASE . 'gba/framework/');
 
@@ -51,17 +51,17 @@ define("RDFAPI_INCLUDE_DIR", GBA_PATH_BASE . "rdfapi/api/");
 // Familia de Constantes para Banco de Dados (BD)
 
 define("GBA_BD_HOST", 'localhost');
-define("GBA_BD_USR", 'cielnews_tcc');  // Usuario Mestre para Conexao
-define("GBA_BD_PW", '');
-define("GBA_BD_NAME", 'cielnews_tcc');  // Banco de Dados do Sistema
+define("GBA_BD_USR", 'cielnews_gba');  // Usuario Mestre para Conexao
+define("GBA_BD_PW", 'zocotroco');
+define("GBA_BD_NAME", 'cielnews_gba');  // Banco de Dados do Sistema
 
 // FTP
 
 define("GBA_FTP_HOST", 'localhost');
-define("GBA_FTP_USR", 'cielnews_tcc');
-define("GBA_FTP_PW", 'senac');
+define("GBA_FTP_USR", 'cielnews_gba');
+define("GBA_FTP_PW", 'zocotroco');
 define("GBA_FTP_PASSIVE", 'true');
-define("GBA_FTP_PATH", '/home/sistemas/tcc/');
+define("GBA_FTP_PATH", '/home/sistemas/gba/');
 define("GBA_FTP_PATH_FOTOS", 'fotos/');
 
 // Tabelas do Banco
@@ -84,8 +84,6 @@ define("GBA_BD_TEMMO", 'gba_empresa_modulo');
 // Valor 1=ativado 0=desativado
 
 define("GBA_MODULO_ADMINISTRACAO", 1);
-define("GBA_MODULO_CORRETOR", 1);
-define('GBA_MODULO_IMOVEL', 1);
 define("GBA_MODULO_INFERENCIA", 1);
 
 /* *******************************
@@ -125,7 +123,7 @@ define("GBA_IMG_ETQ_FOTO", GBA_PATH_SISTEMA . 'img/etq.gif');
 
 // Titulo de Paginas do Sistema
 
-define("GBA_TITULO_PAGINA", 'TCC Leopoldo Braga Barreiro - v0.1 beta');
+define("GBA_TITULO_PAGINA", 'Framework GBA - Leopoldo Braga Barreiro - v0.2 beta');
 
 
 /* *******************************
@@ -138,7 +136,7 @@ define("GBA_SE_INATIV", 60*60*10);
 
 // Nome da Cookie
 
-define("GBA_COOKIE_NAME", 'tcclbarreiro'); 
+define("GBA_COOKIE_NAME", 'gbaFrmwrk'); 
 
 
 /* *******************************
@@ -161,7 +159,7 @@ define("GBA_RESULTADOS_POR_PAGINA", 20);
  * Versão do Sistema
  * ***************************** */
 
-define('GBA_VERSION', 'TCC LBarreiro 0.1 beta');
+define('GBA_VERSION', 'GBA PHP Framework 0.2 beta');
 
 // Validade do Sistema
 

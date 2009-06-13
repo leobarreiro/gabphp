@@ -5,14 +5,17 @@
 */
 include_once (GBA_PATH_CLA_INT . 'IComponenteBase.class.php');
 
-class IBody extends IComponenteBase {
+class IBody extends IComponenteBase
+{
 
-public function IBody() {
+public function IBody()
+{
 	parent::IComponenteBase();
 	$this->setTag('body');
 }
 
-public function montaHtml() {
+public function montaHtml()
+{
 	
 	$stHtml = '<' . $this->getTag();
 	
@@ -20,10 +23,10 @@ public function montaHtml() {
 		$stHtml .= ' id="' . $this->getId() . '"';
 	}
 	if (strlen($this->getCss())) {
-		$stHtml .= ' class="' . $this->getStyle() . '"';
+		$stHtml .= ' class="' . $this->getCss() . '"';
 	}
 	if (strlen($this->getStyle())) {
-		$stHtml .= ' style="' . $this->getCss() . '"';
+		$stHtml .= ' style="' . $this->getStyle() . '"';
 	}
 	
 	$this->obEvento->montaHtml();

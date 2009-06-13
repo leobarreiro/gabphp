@@ -11,6 +11,7 @@
 include_once (GBA_PATH_CLA_INT . 'IHtml.class.php');
 
 include_once (GBA_PATH_CLA_INT . 'IDiv.class.php');
+include_once (GBA_PATH_CLA_INT . 'ILabel.class.php');
 include_once (GBA_PATH_CLA_INT . 'IFormulario.class.php');
 include_once (GBA_PATH_CLA_INT . 'ITabela.class.php');
 include_once (GBA_PATH_CLA_INT . 'ITabelaPaginacao.class.php');
