@@ -53,14 +53,14 @@ function IOpcaoDatas() {
 	$this->radio2->obTexto->setValue('&uacute;ltimos');
 
 	$arMatriz = array(	3=>'3 dias', 
-						5=>'5 dias', 
-						7=>'7 dias', 
-						10=>'10 dias', 
-						15=>'15 dias', 
-						30=>'30 dias', 
-						45=>'45 dias', 
-						60=>'60 dias', 
-						90=>'90 dias' );
+				5=>'5 dias', 
+				7=>'7 dias', 
+				10=>'10 dias', 
+				15=>'15 dias', 
+				30=>'30 dias', 
+				45=>'45 dias', 
+				60=>'60 dias', 
+				90=>'90 dias' );
 	
 	$this->select1 = new ISelect;
 	$this->select1->setNome('ultimos');
@@ -148,9 +148,7 @@ function montaHtml() {
 	$obTabela->montaHtml();
 	
 	$this->stHtml = $obTabela->getHtml();
-	
 }
-
 
 }
 ?>
