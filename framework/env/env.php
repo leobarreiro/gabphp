@@ -16,12 +16,12 @@
  * Casos de uso : 
 */
 
-define("GBA_ERRORS", 100); // Para depuracao
+define("GBA_ERRORS", 0); // Para depuracao
 
 error_reporting(GBA_ERRORS);
 
-define("GBA_URL_BASE", 'http://localhost/');
-define("GBA_PATH_BASE", '/home/cielnews/');
+define("GBA_URL_BASE", 'http://isengard/');
+define("GBA_PATH_BASE", '/home/cielnews/public_html/');
 
 define("GBA_URL_SISTEMA", GBA_URL_BASE . 'gba/');
 define("GBA_PATH_SISTEMA", GBA_PATH_BASE . 'gba/');
