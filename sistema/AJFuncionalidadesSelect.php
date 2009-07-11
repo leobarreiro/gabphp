@@ -17,9 +17,7 @@
 */
 
 
-include_once('../framework/env/env.php');
-include_once ( GBA_PATH_ENV . 'LoadDefs.php');
-include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
+include_once('../gabphp/env/env.php');
 require_once(GBA_PATH_CLA_MAP . 'MPFuncionalidade.class.php');
 
 Sessao::controle();
@@ -45,7 +43,8 @@ $obMPFuncionalidade = new MPFuncionalidade;
 $obRsFuncionalidade = new RecordSet();
 $obRsFuncionalidade->setResultados($obMPFuncionalidade->executaListaFuncionalidadePorModulo($inCodModulo));
 
-while ($arFunc = $obRsFuncionalidade->getRegistro()) {
+while ($arFunc = $obRsFuncionalidade->getRegistro())
+{
     $obFuncionalidade->addOpcao($arFunc['codfuncionalidade'], $arFunc['descricao']);
 }
 

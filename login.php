@@ -16,13 +16,14 @@
     * Casos de uso : 
 */
 
-include_once ('framework/env/env.php');
-include_once ('framework/env/LoadDefs.php');
-include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
+include_once ('./gabphp/env/env.php');
 
 $obHtml = new IHtml;
-$obHtml->obHead->addCSSArquivo('framework/css/gbaphp.css');
+$obHtml->obHead->addCSSArquivo('gabphp/css/gabphp.css');
 $obHtml->obBody->setCss('bodyLogin');
+
+$obDivLogo = new IDiv('logoLogin');
+$obHtml->obBody->addComponente($obDivLogo);
 
 $obForm = new IFormulario();
 $obForm->setId('frmLogin');
@@ -31,8 +32,6 @@ $obForm->setAction('autenticar.php');
 
 $obForm->obEvento->setOnSubmit("JsLogin()");
 
-$obDivLogo = new IDiv('logoLogin');
-$obHtml->obBody->addComponente($obDivLogo);
 
 $obDiv1 = new IDiv();
 $obDiv1->setCss('painelMsg');
@@ -43,8 +42,8 @@ $obHtml->obBody->addComponente($obDiv1);
 $obDivLogin = new IDiv();
 $obDivLogin->setId('dvLogin');
 
-$obParUsuario = new IParagrafo();
-$obLabelUsuario = new IDiv();
+$obParUsuario = new ILabel();
+$obLabelUsuario = new ISpan();
 $obLabelUsuario->setCss('texto');
 $obTxtUsuario = new ITexto('Usu&aacute;rio');
 $obInputUsuario = new IInput('usuario', '', 20, 20);
@@ -54,8 +53,8 @@ $obParUsuario->addComponente($obLabelUsuario);
 $obParUsuario->addComponente($obInputUsuario);
 $obDivLogin->addComponente($obParUsuario);
 
-$obParSenha = new IParagrafo();
-$obLabelSenha = new IDiv();
+$obParSenha = new ILabel();
+$obLabelSenha = new ISpan();
 $obLabelSenha->setCss('texto');
 $obTxtSenha = new ITexto('Senha');
 $obInputSenha = new IInput('senha', '', 20, 20);
@@ -75,35 +74,8 @@ $obInputOk->obEvento->setOnClick('JsLogin()');
 $obParOk->addComponente($obInputOk);
 
 $obDivLogin->addComponente($obParOk);
-
 $obForm->addComponente($obDivLogin);
-
 $obHtml->obBody->addComponente($obForm);
-
-
-/*
-$obCel3 = new ICelula();
-$obTxtSenha = new ITexto('Senha');
-$obCel3->addComponente($obTxtSenha);
-$obTabela->addCelula($obCel3, true);
-
-$obCel4 = new ICelula();
-$obInputSenha = new IInput('senha', '', 20, 20);
-$obInputSenha->setType('password');
-$obCel4->addComponente($obInputSenha);
-$obTabela->addCelula($obCel4);
-
-$obCel5 = new ICelula('100%', 'center');
-$obCel5->setColspan(2);
-
-
-
-$obCel5->addComponente($obInputOk);
-$obTabela->addCelula($obCel5, true);
-
-$obForm->addComponente($obTabela);
-$obHtml->obBody->addComponente($obForm);
-*/
 
 $obScript = new IScript;
 $obScript->setType('text/javascript');

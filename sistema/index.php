@@ -16,5 +16,5 @@
     * Casos de uso: 
 */
 
-header('Location: FMCadastrarAcao.php');
+header('Location: FCAcao.php');
 ?>

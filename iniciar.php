@@ -16,16 +16,21 @@
     * Casos de uso : 
 */
 
-include_once('framework/env/env.php');
-include_once ( GBA_PATH_ENV . 'LoadDefs.php');
+include_once('./gabphp/env/env.php');
+include_once(GBA_PATH_ENV . 'LoadDefs.php');
 include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
 
 Sessao::controle();
 
 $obHtml = new IHtml;
-$obHtml->obHead->addCSSArquivo(GBA_URL_SISTEMA . "framework/css/gbaphp.css");
 
-include ('framework/include/menu.php');
+$divAreaGeral = new IDiv('areaGeral');
+$obHtml->obBody->addComponente($divAreaGeral);
 
-$obHtml->show();
+include_once(GBA_PATH_INC . 'menu.php');
+
+$obDesktop = new IDiv('areaTrabalho');
+$divAreaGeral->addComponente($obDesktop);
+
+$obHtml->renderizar();
 ?>

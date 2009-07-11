@@ -16,7 +16,7 @@
     * Casos de uso : 
 */
 
-include_once ( 'framework/env/env.php' );
+include_once('./gabphp/env/env.php');
 
 if (isset($_COOKIE[GBA_COOKIE_NAME]))
 {

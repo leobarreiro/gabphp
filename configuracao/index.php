@@ -16,5 +16,5 @@
     * Casos de uso: 
 */
 
-header('Location: FMManterDadosPessoais.php');
+header('Location: FCDadosPessoais.php');
 ?>

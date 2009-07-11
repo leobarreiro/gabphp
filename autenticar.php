@@ -16,8 +16,7 @@
     * Casos de uso : 
 */
 
-include_once ( 'framework/env/env.php' );
-include_once ( 'framework/env/LoadDefs.php' );
+include_once('./gabphp/env/env.php');
 
 if ( isset($_POST['usuario']) && strlen($_POST['senha']) 
 	&& isset($_POST['senha']) && strlen($_POST['senha']) )

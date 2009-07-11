@@ -16,7 +16,7 @@
     * Casos de uso : 
 */
 
-include ('framework/env/env.php');
+include_once ('./gabphp/env/env.php');
 include_once ( GBA_PATH_ENV . 'LoadDefs.php');
 include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
 
