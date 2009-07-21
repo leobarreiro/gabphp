@@ -1,31 +1,36 @@
 <?
 /**
- 	* Sistema imobCIEL
+ 	* Framework GabPhp
     * @license : GNU Lesser General Public License v.3
-    * @link http://cielnews.com/imobciel
+    * @link http://cielnews.com/gab
     * 
     * Formulario de Cadastro de Funcionalidade
     * Data de Criacao: 12/10/2008
     * @author Leopoldo Braga Barreiro
     *     
-    * @package imobCIEL
-    * @subpackage
+    * @package GabPhp
+    * @subpackage sistema
     *     
     * $Id$
     *     
     * Casos de uso: 
 */
 
-
 include_once ('../gabphp/env/env.php');
 
 Sessao::controle();
 
 $obHtml = new IHtml;
+
 $divAreaGeral = new IDiv('areaGeral');
 $obHtml->obBody->addComponente($divAreaGeral);
+
+include_once(GBA_PATH_INC . 'menu.php');
+
 $obDesktop = new IDiv('areaTrabalho');
+$obDesktop->setCss('areaTrab');
 $divAreaGeral->addComponente($obDesktop);
+
 $obHtml->obHead->addJSArquivo('JSAcao.js');
 $obHtml->obHead->addJSArquivo('JSFuncionalidade.js');
 
@@ -37,9 +42,33 @@ $obForm->ativaTabela();
 
 $obDesktop->addComponente($obForm);
 
-// Codigo da Acao
+// Codigo da Funcionalidade - campo chave
 
-$inCodFunc = (isset($_POST['codfuncionalidade'])) ? strip_tags($_POST['codfuncionalidade']) : '';
+// Inicializaçao de valores
+$inCodFunc = '';
+$inCodModulo = 1;
+$stDescricao = '';
+$stPrograma = '';
+$stDiretorio = '';
+$inCodFuncExc = '';
+
+if (isset($_REQUEST['codigo']))
+{
+	$inCodFunc = strip_tags($_REQUEST['codigo']);
+	$obMPFunc = new MPFuncionalidade();
+	$obMPFunc->addValor('codfuncionalidade', $inCodFunc);
+	$recordSet = new RecordSet();
+	$recordSet->setResultados($obMPFunc->recuperar());
+	
+	if ($recordSet->getLinhas() > 0)
+	{
+		$inCodModulo = $recordSet->getValor('codmodulo');
+		$stDescricao = $recordSet->getValor('descricao');
+		$stPrograma = $recordSet->getValor('programa');
+		$stDiretorio = $recordSet->getValor('diretorio');
+		$inCodFuncExc = $inCodFunc;
+	}
+}
 
 $obCodFunc = new IInput();
 $obCodFunc->setType('hidden');
@@ -47,8 +76,6 @@ $obCodFunc->setNomeId('codfuncionalidade');
 $obCodFunc->setValue($inCodFunc);
 
 // Modulo
-
-$inCodModulo = (isset($_POST['codmodulo'])) ? strip_tags($_POST['codmodulo']) : 1;
 
 $obModulo = new ISelect();
 $obModulo->setNomeId('codmodulo');
@@ -68,41 +95,33 @@ $obForm->addComponenteTabela('Módulo', $obModulo);
 
 // Descricao da Funcionalidade
 
-$stDescricao = (isset($_POST['descricao'])) ? strip_tags($_POST['descricao']) : '';
-
-$obDescricaoAcao = new IInput();
-$obDescricaoAcao->setNomeId('descricao');
-$obDescricaoAcao->setValue($stDescricao);
-
-$obForm->addComponenteTabela('Descrição', $obDescricaoAcao);
+$obDescricao = new IInput();
+$obDescricao->setNomeId('descricao');
+$obDescricao->setValue($stDescricao);
+$obForm->addComponenteTabela('Descrição', $obDescricao);
 
 // Programa
-
-$stPrograma = (isset($_POST['programa'])) ? strip_tags($_POST['programa']) : '';
 
 $obPrograma = new IInput();
 $obPrograma->setNomeId('programa');
 $obPrograma->setValue($stPrograma);
-
 $obForm->addComponenteTabela('Programa', $obPrograma);
-
-// Ordem
-
-$stOrdem = (isset($_POST['ordem'])) ? strip_tags($_POST['ordem']) : '1';
-
-$obOrdem = new ISelect;
-$obOrdem->setNomeId('ordem');
-$obOrdem->setSelecionado($stOrdem);
-$arOpcoes = array('1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6');
-$obOrdem->setOpcao($arOpcoes);
-
-$obForm->addComponenteTabela('Ordem', $obOrdem);
 
 // Confirmar / Cancelar
 
 $obConfirmarCancelar = new IConfirmarCancelar();
-
 $obForm->addComponenteTabela('', $obConfirmarCancelar);
+
+// Botao de Exclusao
+if (isset($inCodFuncExc))
+{
+	$stNomeBotao = 'excluir_funcionalidade';
+	$prExc = 'PRFuncionalidade.php?' . GBA_PREFIXO_VAR_EXCLUSAO . 'codfuncionalidade=' . $inCodFunc;
+	$obBotaoExcluir = new IInput($stNomeBotao, 'Excluir');
+	$obBotaoExcluir->setType('button');
+	$obBotaoExcluir->obEvento->setOnClick("document.location='" . $prExc . "'");
+	$obForm->addComponenteTabela('', $obBotaoExcluir);
+}
 
 // Renderiza o HTML
 

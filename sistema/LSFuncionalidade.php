@@ -1,22 +1,22 @@
 <?
 /**
- 	* Sistema imobCIEL
+ 	* Framework GabPhp
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/imobciel
+    * @link http://www.cielnews.com/gab
     * 
     * Lista de Acoes
-    * Data de Criacao: 29/09/2008
+    * Data de Criacao: 12/07/2009
     * @author Leopoldo Braga Barreiro
     *     
-    * @package imobCIEL
-    * @subpackage
+    * @package GabPhp
+    * @subpackage sistema
     *     
     * $Id$
     *     
     * Casos de uso: 
 */
 
-include_once ('../gabphp/env/env.php');
+require_once('../gabphp/env/env.php');
 require_once(GBA_PATH_CLA_EST . 'Sistema.class.php');
 
 Sessao::controle();
@@ -34,25 +34,21 @@ $divAreaGeral->addComponente($obDesktop);
 
 // RecordSet
 
-$obRecordSet = Sessao::recuperarRecordSet('acao');
+$obRecordSet = Sessao::recuperarRecordSet('funcionalidade');
 
 // RecordSet Novo, sem consulta a Banco
 
 if (!$obRecordSet || $obRecordSet->getLinhas() == 0)
 {
-	$obMap = new MPAcao;
+	$obMap = new MPFuncionalidade;
 	$obRecordSet = new RecordSet;
 	
-	// Campos do formulário que estão sendo tratados para a consulta
+	// Definição de campos consultados
+	$descricao = (isset($_REQUEST['descricao']) && strlen(strip_tags($_REQUEST['descricao'])) > 0) ? strip_tags(htmlentities($_REQUEST['descricao'])) : '';
+	$codmodulo = (isset($_REQUEST['codmodulo']) && ((int) $_REQUEST['codmodulo'] > 0)) ? (int) $_REQUEST['codmodulo'] : 0;
 	
-	$descricao = (isset($_REQUEST['descricao'])) ? (string) strip_tags($_REQUEST['descricao']) : '';
-	$codmodulo = (isset($_REQUEST['codmodulo'])) ? (int) strip_tags($_REQUEST['codmodulo']) : 0;
-	$codfuncionalidade = (isset($_REQUEST['codfuncionalidade'])) ? (int) strip_tags($_REQUEST['codfuncionalidade']) : 0;
-
-	// Executar a consulta
-	
-	$obRecordSet->setResultados($obMap->executaListaAcaoGeral(array('descricao'=>$descricao, 'codmodulo'=>$codmodulo, 'codfuncionalidade'=>$codfuncionalidade)));
-	Sessao::gravarRecordSet('acao', $obRecordSet);
+	$obRecordSet->setResultados($obMap->executaListaFuncionalidadeGeral(array('codmodulo'=>$codmodulo, 'descricao'=>$descricao)));
+	Sessao::gravarRecordSet('funcionalidade', $obRecordSet);
 }
 
 // Variavel de Controle de Paginacao
@@ -70,16 +66,19 @@ else
 
 $obTbPaginacao = new ITabelaPaginacao;
 $obTbPaginacao->setWidth('100%');
-$obTbPaginacao->setChavesCampos( array('codigo', 'descricao', 'prog', 'ordem', 'funcionalidade', 'modulo') );
-$obTbPaginacao->setCabecalho( array('Código', 'Descrição', 'Programa', 'Ordem', 'Funcionalidade', 'Módulo') );
-$obTbPaginacao->setLinkEdicao('FCAcao.php');
+$obTbPaginacao->setChavesCampos( array('codigo', 'descricao', 'diretorio', 'prog', 'modulo') );
+$obTbPaginacao->setCabecalho( array('Código', 'Descrição', 'Diretório', 'Programa', 'Módulo') );
+
+$obTbPaginacao->setLinkEdicao('FCFuncionalidade.php');
 $obTbPaginacao->setChavePrimaria('codigo');
-$obTbPaginacao->setCamposEdicao( array('descricao', 'prog', 'codigo') );
+$obTbPaginacao->setCamposEdicao( array('descricao', 'prog', 'diretorio') );
+
 $obTbPaginacao->setPaginaAtual($inPg);
 $obTbPaginacao->setLinhasPorPagina(GBA_RESULTADOS_POR_PAGINA);
 $obTbPaginacao->addCSSCelulaResultado('modulo', 'resEsq');
 $obTbPaginacao->addCSSCelulaResultado('ordem', 'resDir');
-$obTbPaginacao->setRecordSet(Sessao::recuperarRecordSet('acao'));
+
+$obTbPaginacao->setRecordSet(Sessao::recuperarRecordSet('funcionalidade'));
 
 $obDesktop->addComponente($obTbPaginacao);
 

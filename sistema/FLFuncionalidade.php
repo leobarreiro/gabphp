@@ -1,15 +1,15 @@
 <?
 /**
- 	* Sistema imobCIEL
+ 	* Framework GabPhp
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/imobciel
+    * @link http://www.cielnews.com/gab
     * 
-    * Lista de Acoes
-    * Data de Criacao: 29/09/2008
+    * Lista de Funcionalidades
+    * Data de Criacao: 12/07/2009
     * @author Leopoldo Braga Barreiro
     *     
-    * @package imobCIEL
-    * @subpackage
+    * @package GabPhp
+    * @subpackage sistema
     *     
     * $Id$
     *     
@@ -31,21 +31,21 @@ $obDesktop = new IDiv('areaTrabalho');
 $obDesktop->setCss('areaTrab');
 $divAreaGeral->addComponente($obDesktop);
 
-// Carregar Javascript especifico
-$obHtml->obHead->addJSArquivo('JSAcao.js');
 
 // Definicao do RecordSet na Sessao
 // Inicializa o RecordSet
 
-Sessao::gravarRecordSet('acao', new RecordSet());
+Sessao::gravarRecordSet('funcionalidade', new RecordSet());
 
 // Formulario de Pesquisa
 
 $obForm = new IFormulario;
 $obDesktop->addComponente($obForm);
 
-$obForm->setAction('LSAcao.php');
+$obForm->setAction('LSFuncionalidade.php');
 $obForm->ativaTabela();
+
+// Módulo
 
 // Modulo
 
@@ -69,32 +69,7 @@ while ($arMod = $obRsModulo->getRegistro())
 $obModulo->obEvento->setOnChange("CarregaFuncionalidadesModulo(this.value)");
 $obForm->addComponenteTabela('Módulo', $obModulo);
 
-// Funcionalidade
-
-$inCodFuncionalidade = '';
-
-$obSpanFunc = new ISpan();
-$obSpanFunc->setNomeId('funcionalidade');
-
-$obFuncionalidade = new ISelect();
-$obFuncionalidade->setNomeId('codfuncionalidade');
-$obFuncionalidade->setMultiple(false);
-$obFuncionalidade->setSelecionado($inCodFuncionalidade);
-$obFuncionalidade->addOpcao('', 'Selecione');
-
-$obMPFuncionalidade = new MPFuncionalidade;
-$obRsFuncionalidade = new RecordSet();
-$obRsFuncionalidade->setResultados($obMPFuncionalidade->executaListaFuncionalidadePorModulo($inCodModulo));
-
-while ($arFunc = $obRsFuncionalidade->getRegistro())
-{
-    $obFuncionalidade->addOpcao($arFunc['codfuncionalidade'], $arFunc['descricao']);
-}
-
-$obSpanFunc->addComponente($obFuncionalidade);
-$obForm->addComponenteTabela('Funcionalidade', $obSpanFunc);
-
-// Descricao da Açao
+// Descricao
 
 $obInputDescricao = new IInput;
 $obInputDescricao->setNomeId('descricao');

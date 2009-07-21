@@ -1,21 +1,20 @@
 <?
 /**
- 	* Sistema imobCIEL
+ 	* Framework GabPhp
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/imobciel
+    * @link http://www.cielnews.com/gab
     * 
     * Processamento de Cadastro de Acao
     * Data de Criacao: 29/09/2008
     * @author Leopoldo Braga Barreiro
     *     
-    * @package imobCIEL
-    * @subpackage
+    * @package GabPhp
+    * @subpackage sistema
     *     
     * $Id$
     *     
     * Casos de uso: 
 */
-
 
 include_once('../gabphp/env/env.php');
 require_once(GBA_PATH_CLA_MAP . 'MPAcao.class.php');
@@ -30,16 +29,24 @@ $obMap = new MPAcao;
 // Inclusao ou Atualizacao
 
 $stCampoChave = 'codacao';
+$stCampoChaveExclusao = GBA_PREFIXO_VAR_EXCLUSAO . 'codacao';
 
-if (isset($_POST[$stCampoChave]) && strlen(strip_tags()) > 0)
+
+if (isset($_REQUEST[$stCampoChave]) && strlen(strip_tags($_REQUEST[$stCampoChave])) > 0)
 {
     $stAcao = 'alterar';
-    $obMap->addValor($stCampoChave, strip_tags($_POST[$stCampoChave]));
+    $obMap->addValor($stCampoChave, strip_tags($_REQUEST[$stCampoChave]));
+}
+elseif (isset($_REQUEST[$stCampoChaveExclusao]) && strlen(strip_tags($_REQUEST[$stCampoChaveExclusao])) > 0)
+{
+	$stAcao = 'excluir';
+	$obMap->addValor('codacao', strip_tags($_REQUEST[$stCampoChaveExclusao]));
 }
 else
 {
     $stAcao = 'incluir';
 }
+
 
 // Controle de Sequencia de Operacao
 
@@ -56,7 +63,7 @@ $arDescr  = array('Módulo', 'Funcionalidade', 'Descrição', 'Programa', 'Ordem
 
 for ($x=0; $x<count($arCampos); $x++)
 {
-    if (!isset($_POST[$arCampos[$x]]))
+    if (!isset($_REQUEST[$arCampos[$x]]))
     {
         $arErro[] = 'Campo ' . $arDescr[$x] . ' faltando.';
         $boProssegue = false;
@@ -82,13 +89,21 @@ if ($stAcao == 'incluir')
         Sessao::gravarMensagem('Ação Incluida corretamente!');
     }
 }
-else
+elseif ($stAcao == 'alterar')
 {
     $inOperacao = $obMap->alterar();
     if (!$obMap->getErro())
     {
         Sessao::gravarMensagem('Ação Alterada corretamente!');
     }
+}
+elseif ($stAcao == 'excluir')
+{
+	$inOperacao = $obMap->excluir();
+	if (!$obMap->getErro())
+	{
+		Sessao::gravarMensagem('Ação Excluída corretamente!');
+	}
 }
 
 if ($obMap->getErro())

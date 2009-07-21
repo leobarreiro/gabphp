@@ -1,15 +1,15 @@
 <?
 /**
- 	* Sistema imobCIEL
+ 	* Sistema GabPhp
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/imobciel
+    * @link http://www.cielnews.com/GAB
     * 
     * Processamento de Cadastro de Funcionalidade
     * Data de Criacao: 12/10/2008
     * @author Leopoldo Braga Barreiro
     *     
-    * @package imobCIEL
-    * @subpackage
+    * @package GabPhp
+    * @subpackage sistema
     *     
     * $Id$
     *     
@@ -17,9 +17,7 @@
 */
 
 
-include_once('../env/env.php');
-include_once ( GBA_PATH_ENV . 'LoadDefs.php');
-include_once(GBA_PATH_CLA_CMP . "LoadClasses.php");
+include_once('../gabphp/env/env.php');
 require_once(GBA_PATH_CLA_MAP . 'MPFuncionalidade.class.php');
 
 Sessao::controle();
@@ -32,16 +30,23 @@ $obMap = new MPFuncionalidade;
 // Inclusao ou Atualizacao
 
 $stCampoChave = 'codfuncionalidade';
+$stCampoChaveExclusao = GBA_PREFIXO_VAR_EXCLUSAO . 'codfuncionalidade';
 
-if (isset($_POST[$stCampoChave]) && strlen(strip_tags()) > 0)
+if (isset($_REQUEST[$stCampoChave]) && strlen(strip_tags($_REQUEST[$stCampoChave])) > 0)
 {
     $stAcao = 'alterar';
-    $obMap->addValor($stCampoChave, strip_tags($_POST[$stCampoChave]));
+    $obMap->addValor($stCampoChave, strip_tags($_REQUEST[$stCampoChave]));
+}
+elseif (isset($_REQUEST[$stCampoChaveExclusao]) && strlen(strip_tags($_REQUEST[$stCampoChaveExclusao])) > 0)
+{
+	$stAcao = 'excluir';
+	$obMap->addValor('codfuncionalidade', strip_tags($_REQUEST[$stCampoChaveExclusao]));
 }
 else
 {
     $stAcao = 'incluir';
 }
+
 
 // Controle de Sequencia de Operacao
 $boProssegue = true;
@@ -50,8 +55,8 @@ $boProssegue = true;
 $arErro = array();
 
 // Campos Obrigatorios para Cadastro
-$arCampos = array('codmodulo', 'codfuncionalidade', 'descricao', 'programa', 'ordem');
-$arDescr  = array('Módulo', 'Funcionalidade', 'Descrição', 'Programa', 'Ordem');
+$arCampos = array('codmodulo', 'codfuncionalidade', 'descricao', 'programa');
+$arDescr  = array('Módulo', 'Funcionalidade', 'Descrição', 'Programa');
 
 for ($x=0; $x<count($arCampos); $x++)
 {
@@ -76,17 +81,25 @@ if ($stAcao == 'incluir')
 {
     $inOperacao = $obMap->incluir();
     if (!$obMap->getErro())
-	{
+    {
         Sessao::gravarMensagem('Funcionalidade Incluida corretamente!');
     }
 }
-else
+elseif ($stAcao == 'alterar')
 {
-	$inOperacao = $obMap->alterar();
+    $inOperacao = $obMap->alterar();
     if (!$obMap->getErro())
-	{
+    {
         Sessao::gravarMensagem('Funcionalidade Alterada corretamente!');
     }
+}
+elseif ($stAcao == 'excluir')
+{
+	$inOperacao = $obMap->excluir();
+	if (!$obMap->getErro())
+	{
+		Sessao::gravarMensagem('Funcionalidade Excluída corretamente!');
+	}
 }
 
 if ($obMap->getErro())

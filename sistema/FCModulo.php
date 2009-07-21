@@ -16,16 +16,20 @@
     * Casos de uso : 
 */
 
-include_once('../gabphp/env/env.php');
+include_once ('../gabphp/env/env.php');
 
 Sessao::controle();
 
 $obHtml = new IHtml;
+
 $divAreaGeral = new IDiv('areaGeral');
 $obHtml->obBody->addComponente($divAreaGeral);
-$obDesktop = new IDiv('areaTrabalho');
-$divAreaGeral->addComponente($obDesktop);
+
 include_once(GBA_PATH_INC . 'menu.php');
+
+$obDesktop = new IDiv('areaTrabalho');
+$obDesktop->setCss('areaTrab');
+$divAreaGeral->addComponente($obDesktop);
 
 $obHtml->obHead->addJSArquivo('JSAcao.js');
 $obHtml->obHead->addJSArquivo('JSFuncionalidade.js');
