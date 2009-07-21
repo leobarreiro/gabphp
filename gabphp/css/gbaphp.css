@@ -1,0 +1,182 @@
+/**
+ * Framework GBAPHP
+ * @license : GNU Lesser General Public License v.3
+ * @link http://www.cielnews.com/gba
+ * 
+ * Estilo CSS Básico para o Framework
+ * Data de Revisão: 05/07/2008
+ * @author Leopoldo Braga Barreiro
+ *     
+ * @package GBA
+ * @subpackage
+ *     
+ * $Id: gbaphp.css 49 2008-07-05 06:17:03Z leobba $
+ *     
+ * Casos de uso : 
+*/
+
+body.bodyLogin {
+	overflow: none;
+}
+
+body.bodyLogin #logoLogin {
+	position: absolute;
+	top: 80px;
+	left: 50%;
+	width: 220px;
+	height: 79px;
+	margin-left: -110px;
+	background: url(../images/logogba.png) no-repeat center;
+}
+
+body.bodyLogin div.painelMsg {
+	position: absolute;
+	top: 170px;
+	left: 50%;
+	width: 400px;
+	margin: 0 0 0 -200px;
+	color: #024E6C;
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 22px;
+	text-align: center;
+}
+
+body.bodyLogin #dvLogin {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 300px;
+	height: 130px;
+	padding: 6px 4px 2px 4px;
+	margin: -65px 0 0 -150px;
+}
+
+body.bodyLogin #dvLogin p {
+	margin: 1px;
+	text-align: center;
+	padding: 2px;
+}
+
+body.bodyLogin #dvLogin div.texto {
+	text-align: right;
+	width: 120px;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 6px 6px 0 0;
+	float: left;
+}
+
+
+body.bodyLogin form #dvLogin input {
+	padding: 4px;
+	font-size: 14px;
+	color: #5D5D5D;
+	width: 140px;
+}
+
+body.bodyLogin form #dvLogin input.botaoEntrar {
+	color: #000000;
+}
+
+div#logoGba {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 220px;
+	height: 79px;
+	background: url(../images/logogba.png) no-repeat center;
+	float: left;
+}
+
+div#etqSup {
+	position: absolute;
+	top: 10px;
+	left: 240px;
+	width: 560px;
+	border: 1px solid magenta;
+}
+
+div#menuSup {
+	position: absolute;
+	top: 50px;
+	left: 240px;
+	border: 1px solid orange;
+	width: 560px;
+}
+
+div#menuSup div.ativo {
+	height: 24px;
+	float: left;
+	border: 1px solid gray;
+	padding: 4px 8px 4px 8px;
+	z-index: 20;
+	font-size: 18px;
+}
+
+div#menuSup div.inativo {
+	height: 24px;
+	float: left;
+	border: 1px solid yellow;
+	padding: 4px 8px 4px 8px;
+	margin: 0 0 0 -4px;
+	z-index: 10;
+	font-size: 18px;
+}
+
+div.mnLateral {
+	position: absolute;
+	top: 110px;
+	left: 10px;
+	float: left;
+	border: 1px solid magenta;
+	width: 210px;
+	padding: 4px;
+}
+
+div#tituloPagina {
+	position: absolute;
+	top: 90px;
+	left: 240px;
+	width: 560px;
+	border: 1px solid green;
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+	padding: 4px 0 2px 0;
+}
+
+div#areaTrabalho {
+	position: absolute;
+	top: 130px;
+	left: 240px;
+	border: 1px solid magenta;
+	width: 560px;
+	padding: 12px 0 2px 0;
+}
+
+/* Estilos Comuns */
+
+.readonly {
+	background : #cecece;
+	border: 1px solid #000000;
+	color: #444444;
+	font-style: normal;
+	font-family: Arial, Verdana, Helvetica, Sans-serif;	
+	font-size: 8pt;	
+	padding: 1px;
+}
+
+
+.InpCifra {
+	width: 60px;
+	text-align: right;
+	border-left: none;
+}
+
+.InpMoeda {
+	background : #cecece;
+	color: #444444;
+	margin-right: 0px;
+	text-align: left;
+	border-right: none;
+}
