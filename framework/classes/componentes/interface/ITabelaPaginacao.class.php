@@ -32,7 +32,7 @@ class ITabelaPaginacao extends ITabela {
 	public $inResultadoInicial;
 	public $inResultadoFinal;
 	
-	public $stEstiloCssCabecalho;       // Estilo CSS padrao para as Celulas do Cabeçalho
+	public $stEstiloCssCabecalho;       // Estilo CSS padrao para as Celulas do CabeÃ§alho
 	public $arEstiloCssAlternado; 		// Array de Estilos Alternados para Linhas de Resultado
     public $stEStiloCSSResultados;      // Estilo CSS padrao para as Celulas de Resultado
 	public $arEstiloCSSCelulasRes; 		// Array de Estilos CSS das Celulas de Resultado
@@ -56,8 +56,8 @@ class ITabelaPaginacao extends ITabela {
 	public $arCamposData;
 
 	
-	public function ITabelaPaginacao() {
-	
+	public function ITabelaPaginacao()
+	{
 		parent::ITabela();
 		$this->arCabecalho = array();
 		$this->arChavesCampos = array();
@@ -77,73 +77,116 @@ class ITabelaPaginacao extends ITabela {
 		$this->obDivNavegacao = new IDiv();
 		
 		$this->arCamposData = array();
-		$this->arCamposValor = array();
-		
+		$this->arCamposValor = array();	
 	}
 	
 	// Metodos SET
 	
-	public function setPaginaAtual($inPgAtual) { $this->inPaginaAtual = $inPgAtual; }
+	public function setPaginaAtual($inPgAtual)
+	{
+		$this->inPaginaAtual = $inPgAtual;
+	}
 	
-	public function setLinhasPorPagina($inLnPg) { $this->inLinhasPorPagina = $inLnPg; }
+	public function setLinhasPorPagina($inLnPg)
+	{
+		$this->inLinhasPorPagina = $inLnPg;
+	}
 	
-	public function setRecordSet($obRecordSet) { $this->obRecordSet = $obRecordSet; }
+	public function setRecordSet($obRecordSet)
+	{
+		$this->obRecordSet = $obRecordSet;
+	}
 	
-	public function setChavesCampos($arChaves) { $this->arChavesCampos = $arChaves; }
+	public function setChavesCampos($arChaves)
+	{
+		$this->arChavesCampos = $arChaves;
+	}
 	
-	public function setCabecalho($arCabecalho) { $this->arCabecalho = $arCabecalho; }
+	public function setCabecalho($arCabecalho)
+	{
+		$this->arCabecalho = $arCabecalho;
+	}
 	
-	public function setResultadoInicial($inResIni) { $this->inResultadoInicial = $inResIni; }
+	public function setResultadoInicial($inResIni)
+	{
+		$this->inResultadoInicial = $inResIni;
+	}
 	
-	public function setResultadoFinal($inResFim) { $this->inResultadoFinal = $inResFim; }
+	public function setResultadoFinal($inResFim)
+	{
+		$this->inResultadoFinal = $inResFim;
+	}
 
-	public function setChavePrimaria( $stChave ) { $this->stChavePrimaria = $stChave; }
+	public function setChavePrimaria( $stChave )
+	{
+		$this->stChavePrimaria = $stChave;
+	}
 	
-	public function setCamposEdicao( $arCampos ) { $this->arCamposEdicao = $arCampos; }
+	public function setCamposEdicao( $arCampos )
+	{
+		$this->arCamposEdicao = $arCampos;
+	}
 	
-	public function setLinkEdicao( $stLink ) { $this->stLinkEdicao = $stLink; }
+	public function setLinkEdicao( $stLink )
+	{
+		$this->stLinkEdicao = $stLink;
+	}
 	
-	public function setEventoClickLinkEdicao( $stInstrucoesClick ) { $this->stEventoClickLinkEdicao = $stInstrucoesClick; }
+	public function setEventoClickLinkEdicao( $stInstrucoesClick )
+	{
+		$this->stEventoClickLinkEdicao = $stInstrucoesClick;
+	}
 	
-	public function setCamposValor( $arCamposVal ) { $this->arCamposValor = $arCamposVal; }
+	public function setCamposValor( $arCamposVal )
+	{
+		$this->arCamposValor = $arCamposVal;
+	}
 	
-	public function setCamposData( $arCamposData ) { $this->arCamposData = $arCamposData; }
+	public function setCamposData( $arCamposData )
+	{
+		$this->arCamposData = $arCamposData;
+	}
 	
 	/* Metodos GET */
 	
-	public function getLinkEdicao() { return $this->stLinkEdicao; }
+	public function getLinkEdicao()
+	{
+		return $this->stLinkEdicao;
+	}
 	
-	public function getEventoClickLinkEdicao() { return $this->stEventoClickLinkEdicao; }
+	public function getEventoClickLinkEdicao()
+	{
+		return $this->stEventoClickLinkEdicao;
+	}
 	
-	public function getChavePrimaria() { return $this->stChavePrimaria; }
-	
+	public function getChavePrimaria()
+	{
+		return $this->stChavePrimaria;
+	}
 	
 	
 	/**
 	 * Define um Estilo para a Celula de Resultado conforme a chave
 	 */	
-	public function addCSSCelulaResultado( $stChave, $stCss ) {
-		
+	public function addCSSCelulaResultado( $stChave, $stCss )
+	{	
 		$arEstiloCSSCelulasRes = $this->arEstiloCSSCelulasRes;
 		$arEstiloCSSCelulasRes[$stChave] = $stCss;
 		$this->arEstiloCSSCelulasRes = $arEstiloCSSCelulasRes;
 		return true;
-
 	}
 	
 	/**
 	 * Metodo para popular Linhas e Celulas da Tabela
 	 */ 
-	public function montaPaginacao() {
-		
+	public function montaPaginacao()
+	{	
 		$obRecordSet = $this->obRecordSet;
 		$inTotalResultados = $obRecordSet->getLinhas();
-		
-		if ($this->inPaginaAtual <= 0) {
+		if ($this->inPaginaAtual <= 0)
+		{
 			$this->inPaginaAtual = 1;
 		}
-		
-		
 		$inTotalPaginas = $inTotalResultados / $this->inLinhasPorPagina;		
 		$this->inTotalPaginas = $inTotalPaginas;
 		
@@ -152,7 +195,8 @@ class ITabelaPaginacao extends ITabela {
 		
 		$arCabecalho = $this->arCabecalho;
 		
-		for ($i=0; $i<count($arCabecalho); $i++) {
+		for ($i=0; $i<count($arCabecalho); $i++)
+		{
 			$obCelula = new ICelula();
 			$obCelula->addComponente(new ITexto($arCabecalho[$i]));
 			$obLinhaCabecalho->addComponente($obCelula);
@@ -168,103 +212,85 @@ class ITabelaPaginacao extends ITabela {
 		$obRecordSet->setPosicao(($this->inPaginaAtual - 1) * $this->inLinhasPorPagina);
 		$inContador = 1;
 
-		while( ($arLin = $obRecordSet->getRegistro()) && ($inContador <= $this->inLinhasPorPagina) )  {
-
-				$obLinhaResultado = new ILinha;
-
-				// Definir aqui o estilo CSS da Linha
-				
-				for ($i=0; $i<count($arChaves); $i++) {
-					
-					$obCelula = new ICelula();
-					$stConteudo = (strlen($arLin[$arChaves[$i]]) > 0) ? ($arLin[$arChaves[$i]]) : '&nbsp;';
-					
-					if ($stConteudo != '&nbsp;' && in_array($arChaves[$i], $this->arCamposData)) {
-						$stConteudo = Sistema::formataDataHora($stConteudo);
+		while( ($arLin = $obRecordSet->getRegistro()) && ($inContador <= $this->inLinhasPorPagina) )
+		{
+			$obLinhaResultado = new ILinha;
+			// Definir aqui o estilo CSS da Linha
+			for ($i=0; $i<count($arChaves); $i++)
+			{
+				$obCelula = new ICelula();
+				$stConteudo = (strlen($arLin[$arChaves[$i]]) > 0) ? ($arLin[$arChaves[$i]]) : '&nbsp;';
+				if ($stConteudo != '&nbsp;' && in_array($arChaves[$i], $this->arCamposData))
+				{
+					$stConteudo = Sistema::formataDataHora($stConteudo);
+				}
+				if ($stConteudo != '&nbsp;' && in_array($arChaves[$i], $this->arCamposValor))
+				{
+					$stConteudo = Sistema::formataNumeroParaLeitura($stConteudo);
+				}
+				// Define Link de Edicao ou Texto simples
+				if (in_array($arChaves[$i], $this->arCamposEdicao))
+				{	
+					$stLinkEdicao = $this->getLinkEdicao();
+					$stEventoClickLinkEdicao = $this->getEventoClickLinkEdicao();	
+					for ($y=0; $y<count($arChaves); $y++)
+					{	
+						$stLinkEdicao = str_replace('['.$arChaves[$y].']', $arLin[$arChaves[$y]], $stLinkEdicao);
+						$stEventoClickLinkEdicao = str_replace('['.$arChaves[$y].']', $arLin[$arChaves[$y]], $stEventoClickLinkEdicao);	
 					}
-
-					if ($stConteudo != '&nbsp;' && in_array($arChaves[$i], $this->arCamposValor)) {
-						$stConteudo = Sistema::formataNumeroParaLeitura($stConteudo);
+					if ($this->getLinkEdicao() != '#')
+					{	
+						$stLinkEdicao = $stLinkEdicao . '?' . $this->getChavePrimaria() . '=' . $arLin[$this->getChavePrimaria()];	
 					}
-					
-					// Define Link de Edicao ou Texto simples
-					
-					if (in_array($arChaves[$i], $this->arCamposEdicao)) {
-						
-						$stLinkEdicao = $this->getLinkEdicao();
-						$stEventoClickLinkEdicao = $this->getEventoClickLinkEdicao();
-						
-						for ($y=0; $y<count($arChaves); $y++) {
-							
-							$stLinkEdicao = str_replace('['.$arChaves[$y].']', $arLin[$arChaves[$y]], $stLinkEdicao);
-							$stEventoClickLinkEdicao = str_replace('['.$arChaves[$y].']', $arLin[$arChaves[$y]], $stEventoClickLinkEdicao);
-							
-						}
-						
-						if ($this->getLinkEdicao() != '#') {
-							
-							$stLinkEdicao = $stLinkEdicao . '?' . $this->getChavePrimaria() . '=' . $arLin[$this->getChavePrimaria()];
-							
-						}
-						
-						$obConteudo = new ILink($stConteudo, $stLinkEdicao);
-						$obConteudo->obEvento->setOnClick($stEventoClickLinkEdicao);
-						
-					} else {
-						
-						$obConteudo = new ITexto($stConteudo);
-						
-					}
-					
-					$obCelula->addComponente($obConteudo);
-					
-					if (isset($arEstilosResultados[$arChaves[$i]])) {
-						$obCelula->setCss($arEstilosResultados[$arChaves[$i]]);
-					}
-					
-					$obLinhaResultado->addComponente($obCelula);
+					$obConteudo = new ILink($stConteudo, $stLinkEdicao);
+					$obConteudo->obEvento->setOnClick($stEventoClickLinkEdicao);
+				}
+				else
+				{	
+					$obConteudo = new ITexto($stConteudo);	
 				}
 				
-				$this->addComponente($obLinhaResultado);
-				++$inContador;
-
+				$obCelula->addComponente($obConteudo);
+				
+				if (isset($arEstilosResultados[$arChaves[$i]]))
+				{
+					$obCelula->setCss($arEstilosResultados[$arChaves[$i]]);
+				}
+				$obLinhaResultado->addComponente($obCelula);
+			}
+			$this->addComponente($obLinhaResultado);
+			++$inContador;
 		}
 		
 		// Link Anterior
 		
-		if ($this->inPaginaAtual > 1) {
-			
+		if ($this->inPaginaAtual > 1)
+		{
 			$stLinkAnterior = '?pg=' . ($this->inPaginaAtual - 1);
 			$obLinkAnterior = new ILink('Anterior', $stLinkAnterior);
 			$this->obDivNavegacao->addComponente(array(new ITexto('&nbsp;'), $obLinkAnterior, new ITexto('&nbsp;')));
-			
 		}
 		
 		// Link Proximo
 		
-		if ($this->inTotalPaginas > $this->inPaginaAtual) {
-			
+		if ($this->inTotalPaginas > $this->inPaginaAtual)
+		{
 			$stLinkProximo = '?pg=' . ($this->inPaginaAtual + 1);
-			$obLinkProximo = new ILink('Pr�ximo', $stLinkProximo);
+			$obLinkProximo = new ILink('Próximo', $stLinkProximo);
 			$this->obDivNavegacao->addComponente(array(new ITexto('&nbsp;'), $obLinkProximo, new ITexto('&nbsp;')));
-			
 		}
-		
 	}
 	
 	/**
 	 * Overload
 	 */ 
-	public function montaHtml() {
-		
+	public function montaHtml()
+	{
 		$this->montaPaginacao();
 		parent::montaHtml();
 		$this->obDivNavegacao->montaHtml();
-		
 		$stHtml = $this->obDivNavegacao->getHtml() . $this->getHtml() . $this->obDivNavegacao->getHtml();
-		$this->stHtml = $stHtml;		
-		
+		$this->stHtml = $stHtml;
 	}
-
 }
 ?>

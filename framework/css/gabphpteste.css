@@ -1,0 +1,161 @@
+/**
+ * Framework GBAPHP
+ * @license : GNU Lesser General Public License v.3
+ * @link http://www.cielnews.com/gba
+ * 
+ * Estilo CSS Básico para o Framework
+ * Data de Revisão: 05/07/2008
+ * @author Leopoldo Braga Barreiro
+ *     
+ * @package GBA
+ * @subpackage
+ *     
+ * $Id$
+ *     
+ * Casos de uso : 
+*/
+
+body {
+	text-align: center;
+}
+
+
+body.bodyLogin {
+	overflow: none;
+}
+
+body.bodyLogin #logoLogin {
+	margin-left: -110px;
+	background: url(../images/logogba.png) no-repeat center;
+}
+
+body.bodyLogin div.painelMsg {
+	margin: 0 0 0 -200px;
+	color: #024E6C;
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 22px;
+	text-align: center;
+}
+
+body.bodyLogin #dvLogin {
+	padding: 6px 4px 2px 4px;
+	margin: -65px 0 0 -150px;
+}
+
+body.bodyLogin #dvLogin p {
+	margin: 1px;
+	text-align: center;
+	padding: 2px;
+}
+
+body.bodyLogin #dvLogin div.texto {
+	text-align: right;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 6px 6px 0 0;
+	float: left;
+}
+
+
+body.bodyLogin form #dvLogin input {
+	padding: 4px;
+	font-size: 14px;
+	color: #5D5D5D;
+}
+
+body.bodyLogin form #dvLogin input.botaoEntrar {
+	color: #000000;
+}
+
+div#areaGeral {
+	position: relative;
+	 text-align:left;
+	 width: 940px;
+	 margin: 0 auto;
+	 border: red 3px solid;
+}
+
+div#areaSuperior1 {
+	height: 50px;
+	}
+
+	div#logoGba {
+	border: 2px solid blue;
+	width: 200px;
+	height: 40px;
+	background: url(../images/logogba.png) no-repeat center;
+	float: left;
+}
+
+div#etqSup {
+
+	border: 1px solid magenta;
+}	
+	
+div#areaSuperior2 {
+	height: 50px;
+	}
+
+div#menuSup {
+	text-align: center;
+	clear:both;
+	border: 1px solid orange;
+}
+
+div#menuSup div.ativo {
+	display: inline;
+	border: 1px solid gray;
+	padding: 4px 8px 4px 8px;
+	z-index: 20;
+	font-size: 18px;
+}
+
+div#menuSup div.inativo {
+	display: inline;
+	border: 1px solid yellow;
+	padding: 4px 8px 4px 8px;
+	margin: 0 0 0 -4px;
+	z-index: 10;
+	font-size: 18px;
+}
+
+div.mnLateral {
+	width: 180px;
+	float: left;
+	border: 1px solid magenta;
+	padding: 10px 4px 4px 24px;
+	background: url(../images/flechadupla.png) no-repeat left;
+}
+
+div.mnLateralMenor {
+	float: left;
+	border: 1px solid magenta;
+	padding: 4px;
+	background: url(../images/flechadupladir.png) no-repeat left;
+}
+
+div.mnLateralMenor div {
+	float: left;
+	display: none;
+	visibility: hidden;
+}
+
+div.mnLateralMenor ul {
+	float: left;
+	display: none;
+	visibility: hidden;
+}
+
+div#tituloPagina {
+	border: 1px solid green;
+	font-size: 20px;
+	text-align: center;
+	padding: 4px 0 2px 0;
+}
+
+div#areaTrabalho {
+	width: 700;
+	float: left;
+	border: 1px solid magenta;
+	padding: 12px 0 2px 0;
+}

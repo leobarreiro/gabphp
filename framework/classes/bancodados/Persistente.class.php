@@ -40,7 +40,7 @@ class Persistente extends Object {
 	var $arTipoData;
 	var $inInsertId;
 	
-	function Persistente()
+	public function Persistente()
 	{
 		parent::__construct();
 		$this->obConexao = new Conexao(GBA_BD_HOST, GBA_BD_USR, GBA_BD_PW, GBA_BD_NAME);

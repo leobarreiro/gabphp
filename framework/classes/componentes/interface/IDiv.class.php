@@ -8,12 +8,11 @@ include_once (GBA_PATH_CLA_INT . 'IEvento.class.php');
 
 class IDiv extends IComponenteBase {
 
-function IDiv($stId='') {
-	parent::IComponenteBase();
-	$this->setTag('div');
-	$this->stId = $stId;
+	public function IDiv($stId='')
+	{
+		parent::IComponenteBase();
+		$this->setTag('div');
+		$this->stId = $stId;
+	}
 }
-
-}
-
 ?>

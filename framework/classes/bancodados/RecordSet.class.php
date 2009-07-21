@@ -13,67 +13,94 @@ class RecordSet {
 	var $inColunas;
 	var $inPosicao;
 	
-	function RecordSet() {
-	
+	public function RecordSet()
+	{	
 		$this->arResultados = array();
 		$this->inLinhas = 0;
 		$this->inColunas = 0;
 		$this->inPosicao = null;
-	
 	}
 	
 	/**
 	* @param 	roConsulta: executada em obConexao->executaSQL(stSQL)
 	* @return 	void
 	* */
-	function setResultados($roConsulta) {
-	
-		while ($ln = mysql_fetch_assoc($roConsulta)) {
+	public function setResultados($roConsulta)
+	{
+		while ($ln = mysql_fetch_assoc($roConsulta))
+		{
 			$this->addRegistro($ln);
 			$this->inLinhas = $this->inLinhas + 1;
 		}
-	
-		if (count($this->getLinhas()) > 0) {
+		if (count($this->getLinhas()) > 0)
+		{
 			$this->inColunas = count($this->getRegistro(0));
 		}
-	
 	}
 	
-	function setPosicao($integer) { $this->inPosicao = $integer; }
+	public function setPosicao($integer)
+	{
+		$this->inPosicao = $integer;
+	}
 	
-	function setProximo() {	$this->setPosicao( $this->getPosicao() + 1 ); }
+	public function setProximo()
+	{
+		$this->setPosicao( $this->getPosicao() + 1 );
+	}
 	
-	function addRegistro($registro) { $this->arResultados[] = $registro; }
+	public function addRegistro($registro)
+	{
+		$this->arResultados[] = $registro;
+	}
 	
 	/**
 	 * Retorna um Array com os Elementos do Recordset
 	 * @param 	void
 	 * @return 	Array: Conteudo do Recordset
 	 */
-	function getResultados() { return $this->arResultados; }
-	function getLinhas() { return $this->inLinhas; }
-	function getColunas() { return $this->inColunas; }
-	function getPosicao() { return $this->inPosicao; }
+	public function getResultados()
+	{
+		return $this->arResultados;
+	}
 	
-	function getRegistro() {
+	public function getLinhas()
+	{
+		return $this->inLinhas;
+	}
 	
-		if ( isset($this->arResultados[$this->getPosicao()]) ) {
+	public function getColunas()
+	{
+		return $this->inColunas;
+	}
+	
+	public function getPosicao()
+	{
+		return $this->inPosicao;
+	}
+	
+	public function getRegistro()
+	{
+		if ( isset($this->arResultados[$this->getPosicao()]) )
+		{
 			$retorno = $this->arResultados[$this->getPosicao()];
 			$this->setProximo();
 		}
-		else {
+		else
+		{
 			$this->setPosicao(0);
 			$retorno = false;
 		}
-	
 		return $retorno;
-	
 	}
 	
-	function getValor($stCampo) {
-		if (isset($this->arResultados[$this->getPosicao()][$stCampo])) {
+	public function getValor($stCampo)
+	{
+		if (isset($this->arResultados[$this->getPosicao()][$stCampo]))
+		{
 			return $this->arResultados[$this->getPosicao()][$stCampo];
-		} else {
+		}
+		else
+		{
 			return null;
 		}
 	}

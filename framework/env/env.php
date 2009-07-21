@@ -16,18 +16,19 @@
  * Casos de uso : 
 */
 
-define("GBA_ERRORS", 0); // Para depuracao
+define("GBA_ERRORS", 123); // Para depuracao
 
 error_reporting(GBA_ERRORS);
 
 define("GBA_URL_BASE", 'http://isengard/');
 define("GBA_PATH_BASE", '/home/cielnews/public_html/');
 
-define("GBA_URL_SISTEMA", GBA_URL_BASE . 'gba/');
-define("GBA_PATH_SISTEMA", GBA_PATH_BASE . 'gba/');
+define("GBA_URL_SISTEMA", GBA_URL_BASE . 'gab/');
+define("GBA_PATH_SISTEMA", GBA_PATH_BASE . 'gab/');
 
-define("GBA_PATH_FWK", GBA_PATH_BASE . 'gba/framework/');
+define("GBA_PATH_FWK", GBA_PATH_SISTEMA . 'gabphp/');
 
+define("GBA_PATH_INC", GBA_PATH_FWK . 'include/');
 define("GBA_PATH_ENV", GBA_PATH_FWK . 'env/');
 define("GBA_PATH_CLA", GBA_PATH_FWK . 'classes/');
 define("GBA_PATH_CLA_EST", GBA_PATH_CLA . 'estatica/');
@@ -125,6 +126,12 @@ define("GBA_IMG_ETQ_FOTO", GBA_PATH_SISTEMA . 'img/etq.gif');
 
 define("GBA_TITULO_PAGINA", 'Framework GBA - Leopoldo Braga Barreiro - v0.2 beta');
 
+/* *******************************
+ * Variaveis Especiais
+ * ***************************** */
+
+// Prefixo para montagem de variaveis chave de exclusao de registros
+define("GBA_PREFIXO_VAR_EXCLUSAO", 'gabExc_');
 
 /* *******************************
  * Sessão
@@ -147,21 +154,23 @@ define("GBA_FUSO_HORARIO", '0');
 define("GBA_MOEDA_PADRAO", 'R$');
 define("GBA_FORMATO_DATA", '%d/%m/%Y');
 
-
 /* *******************************
  * Outras Configuracoes
  * ***************************** */
 
 define("GBA_RESULTADOS_POR_PAGINA", 20);
 
-
 /* *******************************
  * Versão do Sistema
  * ***************************** */
 
-define('GBA_VERSION', 'GBA PHP Framework 0.2 beta');
-
-// Validade do Sistema
-
+define('GBA_VERSION', 'GabPHP Framework 0.3 beta');
 define("GBA_VALIDADE_SISTEMA", '0000-00-00');
+
+/* *******************************
+ * Includes Padrao
+ * ***************************** */
+
+include_once(GBA_PATH_ENV . 'LoadDefs.php');
+include_once(GBA_PATH_CLA_CMP . 'LoadClasses.php');
 ?>

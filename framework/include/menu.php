@@ -36,49 +36,30 @@ require_once (GBA_PATH_CLA_MAP . 'MPModulo.class.php');
 require_once (GBA_PATH_CLA_MAP . 'MPFuncionalidade.class.php');
 require_once (GBA_PATH_CLA_MAP . 'MPAcao.class.php');
 
-$obImgLogo = new IDiv('logoGba');
-$obHtml->obBody->addComponente($obImgLogo);
+$iDivAreaSuperior = new IDiv('areaSuperior');
+$iDivAreaSuperior->setCss('areaSuperior');
 
-$obScript = new IScript;
-$obScript->setLanguage('Javscript');
-$obScript->setType('text/javascript');
-$obScript->addFuncao("
-function ShowMn(elem)
-{
-	var OptMn = new Array();
-	OptMn[0] = 'MnCliente';
-	OptMn[1] = 'MnCobranca';
-	OptMn[2] = 'MnServico';
-	var e = 0;
-	for (e=0; e<OptMn.length; e++)
-	{
-		try
-		{
-			document.getElementById(OptMn[e]).style.display='none';
-			document.getElementById(OptMn[e]).style.visibility='hidden';
-		}
-		catch(e) {}
-	}
-	try
-	{
-		document.getElementById(elem).style.display='inline';
-		document.getElementById(elem).style.visibility='visible';
-	}
-	catch(e) {}
-}");
-	
-$obHtml->obHead->addComponente($obScript);
+$divAreaGeral->addComponente($iDivAreaSuperior);
+
+$obImgLogo = new IDiv('logoGba');
+$iDivAreaSuperior->addComponente($obImgLogo);
+
+$obHtml->obHead->setCharset('UTF-8');
+$obHtml->obHead->addCSSArquivo(GBA_URL_SISTEMA . "gabphp/css/gabphp.css");
+$obHtml->obHead->addJSArquivo('../gabphp/js/gabajax.js');
+$obHtml->obHead->addJSArquivo('../gabphp/js/gabphp.js');
+$obHtml->obHead->addJSArquivo('../gabphp/js/funcoes.js');
 
 $obDivEtqSup = new IDiv('etqSup');
+$iDivAreaSuperior->addComponente($obDivEtqSup);
+
 if (isset($_SESSION) && isset($_SESSION['sessao']) && isset($_SESSION['sessao']['nomecompleto']))
 {
-	$obTextoUsuario = new ITexto('Usuário autenticado: ' . $_SESSION['sessao']['nomecompleto'] . '&nbsp;');
-	$obDivEtqSup->addComponente($obTextoUsuario);
+	$obTextoUsuario = new ISpan();
+	$obTextoUsuario->addComponente(new ITexto('Usuário autenticado: ' . $_SESSION['sessao']['nomecompleto'] . '&nbsp;'));
 	$stUrlSair = (string) GBA_URL_SISTEMA . 'sair.php';
-	$obLinkSair = new ILink('(sair)', $stUrlSair);
-	$obDivEtqSup->addComponente($obLinkSair);
-	$obTxtQuebra = new ITexto('<br>');
-	$obDivEtqSup->addComponente($obTxtQuebra);
+	$obTextoUsuario->addComponente(new ILink('(sair)', $stUrlSair));
+	$obDivEtqSup->addComponente($obTextoUsuario);
 }
 $obSpanDataServ = new ISpan('horaDataServ');
 $obSpanDataServ->setTitle('Data e Hora do Servidor');
@@ -86,17 +67,15 @@ $obTextoDataServ = new ITexto(Sistema::dataServ());
 $obSpanDataServ->addComponente($obTextoDataServ);
 $obDivEtqSup->addComponente($obSpanDataServ);
 
-$obHtml->obBody->addComponente($obDivEtqSup);
-
-// Titulo de Pagina
-
-$obDivTituloPagina = new IDiv();
-$obDivTituloPagina->setNomeId('tituloPagina');
-$obHtml->obBody->addComponente($obDivTituloPagina);
-
 // Menu Superior
 
 $obDivMenuSup = new IDiv('menuSup');
+$iDivAreaSuperior->addComponente($obDivMenuSup);
+
+// Titulo de Pagina
+
+$obDivTituloPagina = new IDiv('tituloPagina');
+$obDivTituloPagina->setCss('titPag');
 
 // Recuperar os Modulos Disponiveis do Sistema
 
@@ -138,14 +117,6 @@ while ($arModulo = $rsModulo->getRegistro())
 	//$obDivMenuSup->addComponente(new ITexto('&nbsp;'));
 }
 
-$obItemMenuSupSair = new IDiv();
-$obItemMenuSupSair->setCss('inativo');
-$obItemMenuSupSair->addComponente(new ILink('Sair', GBA_URL_SISTEMA . 'sair.php'));
-$obDivMenuSup->addComponente($obItemMenuSupSair);
-
-// Adiciona ao HTML o Menu Superior com os Modulos do Sistema
-$obHtml->obBody->addComponente($obDivMenuSup);
-	
 if (isset($inCodModulo) && $inCodModulo > 0)
 {
 	$obMPFuncionalidade = new MPFuncionalidade;
@@ -156,8 +127,10 @@ if (isset($inCodModulo) && $inCodModulo > 0)
 	{
 		$stProgramaAtual = substr($_SERVER['SCRIPT_FILENAME'], (strrpos($_SERVER['SCRIPT_FILENAME'], '/')+1));
 		//Funcionalidade do Mdulo
-		$obDivMenuLateral = new IDiv();
+		$obDivMenuLateral = new IDiv('mnLateral');
+		$divAreaGeral->addComponente($obDivMenuLateral);
 		$obDivMenuLateral->setCss('mnLateral');
+		$obDivMenuLateral->obEvento->setOnDblClick('AlternaMenu(this)');
 		while ($arFuncionalidade = $rsFuncionalidade->getRegistro())
 		{
 			$obDivFuncionalidade = new IDiv();
@@ -198,10 +171,10 @@ if (isset($inCodModulo) && $inCodModulo > 0)
 				$obDivMenuLateral->addComponente($obMenuFuncionalidade);
 			}
 		}
-		$obHtml->obBody->addComponente($obDivMenuLateral);
 	}
 	
 	$obDivTituloPagina->addComponente(new ITexto(Sessao::recuperarUltimoTituloPagina()));
-
 }
+
+$divAreaGeral->addComponente($obDivTituloPagina);
 ?>
