@@ -237,12 +237,18 @@ class Persistente extends Object {
 		}
 		$stSQL = substr($stSQL, 0, (strlen($stSQL)-2));
 		$stSQL .= " ) ";
+		
+		$stSQL = $this->preparaSQL($stSQL);
 		$this->stSQL = $stSQL;
+		//$this->logMsg($stSQL);
+		
 		// Consulta
 		$this->roConsulta = mysql_query($stSQL, $this->obConexao->getConexao());
 		if (mysql_error($this->obConexao->getConexao()))
 		{
 			$this->stDebug = mysql_error($this->obConexao->getConexao());
+			$this->setErro($this->stDebug, true);
+			$this->logError();
 		}
 		if (mysql_affected_rows($this->obConexao->getConexao()))
 		{
@@ -306,12 +312,18 @@ class Persistente extends Object {
 			}
 		}
 		$stSQL .= " ";
+		
+		$stSQL = $this->preparaSQL($stSQL);
 		$this->stSQL = $stSQL;
+		//$this->logMsg($stSQL);
+		
 		// Consulta
 		$this->roConsulta = mysql_query($stSQL, $this->obConexao->getConexao());
 		if (mysql_error($this->obConexao->getConexao()))
 		{
 			$this->stDebug = mysql_error($this->obConexao->getConexao());
+			$this->setErro($this->stDebug, true);
+			$this->logError();
 		}
 		if (mysql_num_rows($this->roConsulta))
 		{
@@ -337,13 +349,16 @@ class Persistente extends Object {
 		$stSQL .= " SET ";
 		foreach ($this->arCampos as $stCampo)
 		{
-			if (strlen($this->getValor($stCampo)) > 0)
+			if (!in_array($stCampo, $this->arChavePrimaria))
 			{
-				$stSQL .= $stCampo . " = '" . $this->getValor($stCampo) . "', ";
-			}
-			if (strtoupper($this->getValor($stCampo)) == 'NULL')
-			{
-				$stSQL .= $stCampo . " = NULL, ";
+				if (strlen($this->getValor($stCampo)) > 0)
+				{
+					$stSQL .= $stCampo . " = '" . $this->getValor($stCampo) . "', ";
+				}
+				if (strtoupper($this->getValor($stCampo)) == 'NULL')
+				{
+					$stSQL .= $stCampo . " = NULL, ";
+				}
 			}
 		}
 		$stSQL = substr($stSQL, 0, (strlen($stSQL)-2));
@@ -377,6 +392,7 @@ class Persistente extends Object {
 				}
 			}
 		}
+		/*
 		foreach ($this->arChaveUnica as $stCampo)
 		{
 			if (strlen($this->getValor($stCampo)) > 0)
@@ -405,15 +421,21 @@ class Persistente extends Object {
 					}
 				}
 			}
-		}
+		}*/
 		
 		$stSQL .= " ";
 		$this->stSQL = $stSQL;
+		
+		$stSQL = $this->preparaSQL($stSQL);
+		//$this->logMsg($stSQL);
+		
 		// Consulta
 		$this->roConsulta = mysql_query($stSQL, $this->obConexao->getConexao());
 		if (mysql_error($this->obConexao->getConexao()))
 		{
 			$this->stDebug = mysql_error($this->obConexao->getConexao());
+			$this->setErro($this->stDebug, true);
+			$this->logError();
 		}
 		if (mysql_affected_rows($this->obConexao->getConexao()))
 		{
@@ -447,22 +469,31 @@ class Persistente extends Object {
 		foreach ($this->arChaveUnica as $stCampo)
 		{
 			// Numerico
-			if (in_array($this->getTipoCampo($stCampo), $this->arTipoNumerico))
+			if (in_array($this->getTipoCampo($stCampo), $this->arTipoNumerico) && $this->getValor($stCampo) > 0)
 			{
 				$stSQL .= " AND " . $stCampo . " = " . $this->getValor($stCampo);
 			}
 			else
 			{
-				$stSQL .= " AND " . $stCampo . " = '" . $this->getValor($stCampo) . "'";
+				if (strlen($this->getValor($stCampo)) > 0)
+				{
+					$stSQL .= " AND " . $stCampo . " = '" . $this->getValor($stCampo) . "'";
+				}
 			}
 		}
 		$stSQL .= " ";
+		
+		$stSQL = $this->preparaSQL($stSQL);
 		$this->stSQL = $stSQL;
+		//$this->logMsg($stSQL);
+		
 		// Consulta
 		$this->roConsulta = mysql_query($stSQL, $this->obConexao->getConexao());
 		if (mysql_error($this->obConexao->getConexao()))
 		{
 			$this->stDebug = mysql_error($this->obConexao->getConexao());
+			$this->setErro($this->stDebug, true);
+			$this->logError();
 		}
 		if (mysql_affected_rows($this->obConexao->getConexao()))
 		{
