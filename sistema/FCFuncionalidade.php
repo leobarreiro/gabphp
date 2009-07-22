@@ -16,7 +16,8 @@
     * Casos de uso: 
 */
 
-include_once ('../gabphp/env/env.php');
+require_once ('../gabphp/env/env.php');
+require_once (GBA_PATH_CLA_MAP . 'MPFuncionalidade.class.php');
 
 Sessao::controle();
 

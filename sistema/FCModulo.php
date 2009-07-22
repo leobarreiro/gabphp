@@ -1,8 +1,8 @@
 <?php
 /**
- 	* Framework GBAPHP
+ 	* Framework GabPhp
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/gba
+    * @link http://cielnews.com/gab
     * 
     * Formulario para Cadastro de Módulo
     * Data de Criacao: 27/06/2009
@@ -16,7 +16,8 @@
     * Casos de uso : 
 */
 
-include_once ('../gabphp/env/env.php');
+require_once ('../gabphp/env/env.php');
+require_once (GBA_PATH_CLA_MAP . 'MPModulo.class.php');
 
 Sessao::controle();
 
@@ -41,9 +42,28 @@ $obForm->setAction('PRModulo.php');
 $obForm->ativaTabela();
 $obDesktop->addComponente($obForm);
 
-// Codigo do Modulo
+// Codigo do Modulo - campo chave
 
-$inCodModulo = (isset($_POST['codmodulo'])) ? strip_tags($_POST['codmodulo']) : '';
+$inCodModulo = '';
+$stDescricao = '';
+$stDiretorio = '';
+
+if (isset($_REQUEST['codigo']))
+{
+	$inCodModulo = strip_tags($_REQUEST['codigo']);
+	$obMap = new MPModulo();
+	$obMap->addValor('codmodulo', $inCodModulo);
+	$recordSet = new RecordSet();
+	$recordSet->setResultados($obMap->recuperar());
+	
+	if ($recordSet->getLinhas() > 0)
+	{
+		$inCodModulo = $recordSet->getValor('codmodulo');
+		$stDescricao = $recordSet->getValor('descricao');
+		$stDiretorio = $recordSet->getValor('diretorio');
+		$inCodModuloExc = $inCodModulo;
+	}
+}
 
 $inpCodModulo = new IInput();
 $inpCodModulo->setType('hidden');
@@ -54,7 +74,6 @@ $obForm->addComponente($inpCodModulo);
 
 // Descricao do Modulo
 
-$stDescricao = (isset($_POST['descricao'])) ? strip_tags($_POST['descricao']) : '';
 $obDescricaoModulo = new IInput();
 $obDescricaoModulo->setNomeId('descricao');
 $obDescricaoModulo->setValue($stDescricao);
@@ -62,7 +81,6 @@ $obForm->addComponenteTabela('Descrição', $obDescricaoModulo);
 
 // Diretorio
 
-$stDiretorio = (isset($_POST['diretorio'])) ? strip_tags($_POST['diretorio']) : '';
 $inpDiretorio = new IInput();
 $inpDiretorio->setNomeId('diretorio');
 $inpDiretorio->setValue($stDiretorio);
@@ -72,6 +90,18 @@ $obForm->addComponenteTabela('Diretorio', $inpDiretorio);
 
 $obConfirmarCancelar = new IConfirmarCancelar();
 $obForm->addComponenteTabela('', $obConfirmarCancelar);
+
+
+// Botao de Exclusao
+if (isset($inCodModuloExc))
+{
+	$stNomeBotao = 'excluir_modulo';
+	$prExc = 'PRModulo.php?' . GBA_PREFIXO_VAR_EXCLUSAO . 'codmodulo=' . $inCodModulo;
+	$obBotaoExcluir = new IInput($stNomeBotao, 'Excluir');
+	$obBotaoExcluir->setType('button');
+	$obBotaoExcluir->obEvento->setOnClick("document.location='" . $prExc . "'");
+	$obForm->addComponenteTabela('', $obBotaoExcluir);
+}
 
 // Renderiza o HTML
 $obHtml->renderizar();

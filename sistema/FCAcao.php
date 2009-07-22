@@ -1,8 +1,8 @@
 <?
 /**
- 	* Sistema imobCIEL
+ 	* Framework GabPhp
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/imobciel
+    * @link http://cielnews.com/gab
     * 
     * Formulario de Cadastro de Acao
     * Data de Criacao: 29/09/2008
@@ -16,7 +16,8 @@
     * Casos de uso: 
 */
 
-include_once ('../gabphp/env/env.php');
+require_once ('../gabphp/env/env.php');
+require_once (GBA_PATH_CLA_MAP . 'MPAcao.class.php');
 
 Sessao::controle();
 
@@ -144,7 +145,7 @@ $obForm->addComponenteTabela('Programa', $obPrograma);
 $obOrdem = new ISelect;
 $obOrdem->setNomeId('ordem');
 $obOrdem->setSelecionado($stOrdem);
-$arOpcoes = array('1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6');
+$arOpcoes = array('1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10');
 $obOrdem->setOpcao($arOpcoes);
 
 $obForm->addComponenteTabela('Ordem', $obOrdem);

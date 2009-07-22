@@ -40,7 +40,7 @@ if (isset($_REQUEST[$stCampoChave]) && strlen(strip_tags($_REQUEST[$stCampoChave
 elseif (isset($_REQUEST[$stCampoChaveExclusao]) && strlen(strip_tags($_REQUEST[$stCampoChaveExclusao])) > 0)
 {
 	$stAcao = 'excluir';
-	$obMap->addValor('codacao', strip_tags($_REQUEST[$stCampoChaveExclusao]));
+	$obMap->addValor($stCampoChave, strip_tags($_REQUEST[$stCampoChaveExclusao]));
 }
 else
 {
