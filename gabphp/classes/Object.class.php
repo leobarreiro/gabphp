@@ -1,15 +1,15 @@
 <?
 /**
- 	* Framework GBA
+ 	* Framework GabPhp
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/gba
+    * @link http://www.cielnews.com/gab
     * 
     * Classe Object
     * Data de Criacao: 27/09/2008
     * @author Leopoldo Braga Barreiro
     *     
-    * @package GBA
-    * @subpackage
+    * @package GabPhp
+    * @subpackage gabphp
     *     
     * $Id: $
     *     
@@ -25,7 +25,8 @@ class Object {
 	 * Método Construtor
 	 * @return void
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		$this->stMsgErro = 'Objeto Instanciado: ' . get_class($this);
 		$this->boEventoErro = false;
 	}
@@ -36,7 +37,8 @@ class Object {
 	 * @param boolean Evento de Erro
 	 * @return void
 	 */
-	public function setErro($stMsg, $boEvento) {
+	public function setErro($stMsg, $boEvento)
+	{
 		$this->boEventoErro = $boEvento;
 		$this->stMsgErro = $stMsg;
 	}
@@ -45,7 +47,8 @@ class Object {
 	 * Retorna Evento de Erro
 	 * @return boolean
 	 */
-	public function getErro() {
+	public function getErro()
+	{
 		return $this->boEventoErro;
 	}
 	
@@ -53,10 +56,27 @@ class Object {
 	 * Retorna mensagem de Erro
 	 * @return String Mensagem
 	 */
-	public function getMsgErro() {
+	public function getMsgErro()
+	{
 		return $this->stMsgErro;
 	}
 	
+	
+	public function logError()
+	{
+		$this->logMsg($this->stMsgErro);
+	}
+	
+	/**
+	 * Realiza o Log de uma mensagem
+	 * @param String $msg Mensagem a ser incluida no log
+	 * @return boolean
+	 */
+	public function logMsg($msg)
+	{
+		$stMensagemLog = "[" . date("Y-m-d H:i:s") . "] " . get_class($this) . " - " . $msg . "<br/>\n";
+		error_log($stMensagemLog, 3, GBA_LOG_FILE);
+		return true;
+	}
 }
-
 ?>
