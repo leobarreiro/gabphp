@@ -16,7 +16,7 @@
  * Casos de uso : 
 */
 
-define("GBA_ERRORS", 123); // Para depuracao
+define("GBA_ERRORS", 12); // Para depuracao
 
 error_reporting(GBA_ERRORS);
 
@@ -166,6 +166,12 @@ define("GBA_RESULTADOS_POR_PAGINA", 20);
 
 define('GBA_VERSION', 'GabPHP Framework 0.3 beta');
 define("GBA_VALIDADE_SISTEMA", '0000-00-00');
+
+/* *******************************
+ * Arquivos de Log
+ * ***************************** */
+define('GBA_LOG_FILE', '/home/cielnews/logs/gab.log');
+
 
 /* *******************************
  * Includes Padrao
