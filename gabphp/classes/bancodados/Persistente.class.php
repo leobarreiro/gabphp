@@ -21,24 +21,25 @@ include_once( GBA_PATH_CLA_BDA . 'Conexao.class.php');
 
 class Persistente extends Object {
 	
-	var $obConexao; // Objeto do Tipo Conexao
-	var $stTabela;
-	var $arChavePrimaria;
-	var $arChaveEstrangeira;
-	var $arChaveUnica;
-	var $arCampos;
-	var $arTipos;
-	var $arValores;
-	var $boErro;
-	var $roConsulta;
-	var $inRegAfetados; // Quantidade de Registros Afetados
-	var $inRegSelecionados;
-	var $stDebug;
-	var $stSQL;
-	var $arTipoNumerico;
-	var $arTipoString;
-	var $arTipoData;
-	var $inInsertId;
+	public $obConexao; // Objeto do Tipo Conexao
+	public $stTabela;
+	public $arChavePrimaria;
+	public $arChaveEstrangeira;
+	public $arChaveUnica;
+	public $arCampos;
+	public $arPermiteNulo; // Campos que permitem valores nulos
+	public $arTipos;
+	public $arValores;
+	public $boErro;
+	public $roConsulta;
+	public $inRegAfetados; // Quantidade de Registros Afetados
+	public $inRegSelecionados;
+	public $stDebug;
+	public $stSQL;
+	public $arTipoNumerico;
+	public $arTipoString;
+	public $arTipoData;
+	public $inInsertId;
 	
 	public function Persistente()
 	{
@@ -47,6 +48,7 @@ class Persistente extends Object {
 		$this->arChavePrimaria = array();
 		$this->arChaveEstrangeira = array();
 		$this->arCampos = array();
+		$this->arPermiteNulo = array();
 		$this->arTipos = array();
 		$this->arValores = array();
 		$this->boErro = true;
@@ -67,6 +69,7 @@ class Persistente extends Object {
 		$this->arChaveEstrangeira = array();
 		$this->arChaveUnica = array();
 		$this->arCampos = array();
+		$this->arPermiteNulo = array();
 		$stSQL = "SHOW COLUMNS FROM `" . $this->getTabela() . "`";	
 		$trb = mysql_query($stSQL, $this->obConexao->getConexao());
 		while ($registro = mysql_fetch_assoc($trb))
@@ -84,6 +87,7 @@ class Persistente extends Object {
 			if ($registro['Key'] == 'PRI') { $this->addChavePrimaria($registro['Field']); }
 			if ($registro['Key'] == 'MUL') { $this->addChaveEstrangeira($registro['Field']); }
 			if ($registro['Key'] == 'UNI') { $this->addChaveUnica($registro['Field']); }
+			if ($registro['Null'] == 'YES') { $this->addPermiteNulo($registro['Field']); }
 		}
 	}
 	
@@ -177,6 +181,11 @@ class Persistente extends Object {
 		$this->arChaveUnica[] = $stNome;
 	}
 	
+	public function addPermiteNulo($stNome)
+	{
+		$this->arPermiteNulo[] = $stNome;
+	}
+	
 	public function addValor($stCampo, $stValor)
 	{
 		$this->arValores[$stCampo] = $stValor;
@@ -185,7 +194,7 @@ class Persistente extends Object {
 	/**
 	* @param void
 	* @return integer Insert ID
-	* @desc Insere o objeto no banco de dados. Retorna o Insert ID em caso de sucesso ou zero (0) em caso de falha na inser��o
+	* @desc Insere o objeto no banco de dados. Retorna o Insert ID em caso de sucesso ou zero (0) em caso de falha na insercao
 	* 
 	*/
 	public function incluir()
