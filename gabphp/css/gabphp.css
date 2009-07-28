@@ -98,13 +98,13 @@ div#areaGeral {
 }
 
 div.areaSuperior {
-	height: 62px;
-	border: transparent;
+	height: 70px;
+	border-bottom: 1px solid orangered;
 }
 
 
 div#logoGba {
-	margin: 2px;
+	margin: 4px 0px 4px 0px;
 	width: 180px;
 	height: 62px;
 	background: url(../images/logogba.png) no-repeat center;
@@ -124,37 +124,45 @@ div#etqSup span {
 
 
 div#menuSup {
-	width: 760px;
+	width: 750px;
 	float: right;
 	text-align: left;
-	margin-left: 0px;
-	height: 34px;
-	border: 1px solid orange;
+	margin: 12px 0px 0px 0px;
+	height: 28px;
+	border-bottom: 1px solid orangered;
+	padding: 2px 2px 0px 10px;
 }
 
 div#menuSup div {
-	padding: 2px;
-	margin: 6px 2px 2px 2px;
+	display: inline-block;
+	width: 130px;
+	height: 24px;
+	text-align: center;
+	font-size: 12pt;
+	padding: 4px 6px 0px 6px;
+	margin: 0px 4px 0px 4px;
 }
 
 div#menuSup div.ativo {
-	display: inline;
-	height: 34px;
-	border: 1px solid gray;
-	padding: 4px 8px 4px 8px;
-	margin: 0 0 0 -4px;
+	border: 1px solid orangered;
+	border-bottom: 0px none;
+	background: #fff;	
 	z-index: 20;
-	font-size: 18px;
 }
 
 div#menuSup div.inativo {
-	display: inline;
-	border: 1px solid yellow;
-	height: 34px;
-	padding: 4px 8px 4px 8px;
-	margin: 0 0 0 -4px;
+	border: 1px solid orangered;
+	border-bottom: 0px none;
+	border-left: 1px solid orangered;
 	z-index: 10;
-	font-size: 18px;
+}
+
+div#menuSup div.inativo a {
+	text-decoration: none;
+}
+
+div#menuSup div.inativo a:hover {
+	font-weight: bold;
 }
 
 div.mnLateral {
