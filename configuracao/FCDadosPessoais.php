@@ -38,6 +38,9 @@ $obForm->ativaTabela();
 
 $obDesktop->addComponente($obForm);
 
+// Adicionar Javascript Especifico
+$obHtml->obHead->addJSArquivo('JSValidarDadosPessoais.js');
+
 // Nome
 
 $obInpNome = new IInput('nomecompleto', $_SESSION['sessao']['nomecompleto'], 40, 80);
@@ -78,6 +81,8 @@ $obForm->addComponenteTabela('Repita a Senha', $obInpRepitaSenha);
 // Confirmar / Cancelar
 
 $obConfirmarCancelar = new IConfirmarCancelar();
+$obConfirmarCancelar->obBotaoOk->setType('button');
+$obConfirmarCancelar->obBotaoOk->obEvento->setOnClick("validarDadosPessoais(this.form)");
 
 $obForm->addComponenteTabela('', $obConfirmarCancelar);
 
