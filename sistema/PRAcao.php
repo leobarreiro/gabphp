@@ -63,14 +63,22 @@ $arDescr  = array('Módulo', 'Funcionalidade', 'Descrição', 'Programa', 'Ordem
 
 for ($x=0; $x<count($arCampos); $x++)
 {
-    if (!isset($_REQUEST[$arCampos[$x]]))
+    if (!isset($_POST[$arCampos[$x]]))
     {
         $arErro[] = 'Campo ' . $arDescr[$x] . ' faltando.';
         $boProssegue = false;
     }
     else
     {
-        $obMap->addValor($arCampos[$x], strip_tags($_POST[$arCampos[$x]]));
+		if (strlen(strip_tags($_POST[$arCampos[$x]])) > 0)
+		{
+			$obMap->addValor($arCampos[$x], strip_tags($_POST[$arCampos[$x]]));
+		}
+		else
+		{
+			$arErro[] = 'Campo ' . $arDescr[$x] . ' em branco.';
+			$boProssegue = false;
+		}
     }
 }
 
