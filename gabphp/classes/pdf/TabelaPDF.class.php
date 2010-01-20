@@ -1,15 +1,15 @@
 <?php
 /**
- 	* Framework GBAPHP
+ 	* Framework GabPhp
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/gba
+    * @link http://www.cielnews.com/gab
     * 
     * Classe de Tabela em PDF
-    * Data de Criação: 27/11/2007
+    * Data de Criacao: 27/11/2007
     * @author Leopoldo Braga Barreiro
     *     
-    * @package GBAPHP
-    * @subpackage
+    * @package GabPhp
+    * @subpackage gabphp
     *     
     * $Id: $
     *     
@@ -201,7 +201,7 @@ class TabelaPDF
 	{
 		$obCampoCabecalho = new CampoTabelaPDF;
 		$obCampoCabecalho->setAlinhamento($this->getAlinhamentoCabecalho());
-		$obCampoCabecalho->setAlturaCelula($this->inAlturaCelulaCabecalho)
+		$obCampoCabecalho->setAlturaCelula($this->inAlturaCelulaCabecalho);
 		$obCampoCabecalho->setFonte($this->getFonteCabecalho());
 		$obCampoCabecalho->setAlturaFonte($this->getAlturaFonteCabecalho());
 		$obCampoCabecalho->setEstiloFonte($this->getEstiloFonteCabecalho());
