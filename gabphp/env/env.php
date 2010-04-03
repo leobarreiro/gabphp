@@ -54,7 +54,7 @@ define("RDFAPI_INCLUDE_DIR", GBA_PATH_BASE . "rdfapi/api/");
 define("GBA_BD_HOST", 'localhost');
 define("GBA_BD_USR", 'cielnews_gba');  // Usuario Mestre para Conexao
 define("GBA_BD_PW", 'zocotroco');
-define("GBA_BD_NAME", 'cielnews_gba');  // Banco de Dados do Sistema
+define("GBA_BD_NAME", 'cielnews_gba'); // Banco de Dados do Sistema
 
 // FTP
 
