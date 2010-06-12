@@ -1,8 +1,8 @@
 <?php
 /**
- 	* Framework GBAPHP
+ 	* Framework GABPHP
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/gba
+    * @link http://www.cielnews.com/gab
     * 
     * Página de Autenticação Inicial no Sistema
     * Data de Criação: 25/01/2007
@@ -12,8 +12,7 @@
     * @subpackage
     *     
     * $Id: autenticar.php 46 2008-06-25 04:13:41Z leobba $
-    *     
-    * Casos de uso : 
+    *
 */
 
 include_once('./gabphp/env/env.php');

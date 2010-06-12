@@ -1,8 +1,8 @@
 <?php
 /**
- 	* Framework GBAPHP
+ 	* Framework GABPHP
     * @license : GNU Lesser General Public License v.3
-    * @link http://www.cielnews.com/gba
+    * @link http://www.cielnews.com/gab
     * 
     * Página de Login Padrão
     * Data de Criao: 21/06/2008
