@@ -1,9 +1,19 @@
 <?php
 /**
-* RecordSet.class.php
-* 05/01/2008
-* 
-* $Id: $
+    * Framework GBAPHP
+    * @license : GNU Lesser General Public License v.3
+    * @link http://www.cielnews.com/gba
+    * 
+    * Classe de Implementação de RecordSet para Consultas em Base de Dados
+    * Data de Criacao: 05/01/2008
+    *     
+    * @package GBAPHP
+    * @subpackage
+    *     
+    * $Id: $
+    * $Author: leo@cielnews.com
+    * 
+    * Casos de uso : 
 */
 
 class RecordSet {
