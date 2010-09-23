@@ -1,6 +1,6 @@
 <?
 /**
- 	* Framework GBA
+    * Framework GBA
     * @license : GNU Lesser General Public License v.3
     * @link http://www.cielnews.com/gba
     * 
@@ -34,7 +34,7 @@ class ITabelaPaginacao extends ITabela {
 	
 	public $stEstiloCssCabecalho;       // Estilo CSS padrao para as Celulas do CabeÃ§alho
 	public $arEstiloCssAlternado; 		// Array de Estilos Alternados para Linhas de Resultado
-    public $stEStiloCSSResultados;      // Estilo CSS padrao para as Celulas de Resultado
+        public $stEStiloCSSResultados;      // Estilo CSS padrao para as Celulas de Resultado
 	public $arEstiloCSSCelulasRes; 		// Array de Estilos CSS das Celulas de Resultado
 	
 	
